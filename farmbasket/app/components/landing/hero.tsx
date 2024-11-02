@@ -23,6 +23,11 @@ export default function Hero() {
                 </button>
               </div>
             </div>
+            <div className="mt-10 mb-5">
+              <div className="text-[48px] font-semibold">
+                What's Trending?
+              </div>
+            </div>
             <div className="flex justify-between items-center mt-14">
               <div className="bg-gray-400 h-80 w-72 rounded-md" >
 
