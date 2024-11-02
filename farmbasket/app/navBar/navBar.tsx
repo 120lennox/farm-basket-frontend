@@ -8,9 +8,15 @@ export default function NavBar() {
           </h1>
         </div>
         <ul className="flex space-x-4 bg-slate-400 p-[10px] font-bold rounded-[45px] items-center">
-          <li className="p-2">Shops</li>
-          <li className="p-2">Explore</li>
-          <li className="p-2">Collections</li>
+          <li className="p-2 hover:text-[#00df9a] transition duration-100">
+            Shops
+          </li>
+          <li className="p-2 hover:text-[#00df9a] transition duration-300">
+            Explore
+          </li>
+          <li className="p-2 hover:text-[#00df9a] transition duration-300">
+            Collections
+          </li>
         </ul>
         <div className="flex space-x-4 p-4 font-bold">
           <h1 className="p-2">Login</h1>
