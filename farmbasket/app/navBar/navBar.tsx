@@ -1,7 +1,7 @@
 export default function NavBar() {
   return (
     <div className="text-white uppercase border-b">
-      <div className="flex justify-between items-center mx-auto h-24 max-w-[1240px] px-4">
+      <div className="flex justify-between items-center mx-auto h-24 max-w-[1240px] px-2">
         <div className="flex items-center">
           <h1 className="text-3xl font-extrabold ">
             FARM <span className="text-[#00df9a]">BASKET</span>
