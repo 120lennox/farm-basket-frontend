@@ -12,7 +12,7 @@ export default function Home() {
           <Hero />
         </div>
       </div>
-      <section>
+      <section className="mt-16 mb-10">
         <div>
           <Faq />
         </div>
