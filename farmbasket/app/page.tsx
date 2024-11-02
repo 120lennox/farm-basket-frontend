@@ -1,3 +1,4 @@
+import Faq from "./components/landing/faq";
 import Hero from "./components/landing/hero";
 
 export default function Home() {
@@ -11,6 +12,12 @@ export default function Home() {
           <Hero />
         </div>
       </div>
+      <section>
+        <div>
+          <Faq />
+        </div>
+      </section>
+
     </div>
   );
 }
