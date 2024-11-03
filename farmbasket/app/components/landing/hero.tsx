@@ -10,7 +10,7 @@ export default function Hero() {
                   </h1>
                 </div>
                 <div className="w-[950px]">
-                  <p className="text-[32px]">
+                  <p className="text-[28px]">
                     From Seeds to Harvest: Your One-Stop Shop for All Things Agriculture
                     Seeds to Harvest: Your One-Stop Shop for All Things Agriculture Your
                     Harvest: Your One-Stop Shop for All Things Agriculture
