@@ -1,4 +1,10 @@
 export default function Hero() {
+<<<<<<< HEAD
+  return (
+    <div>
+      <h1>thi is hero page</h1>
+    </div>
+=======
     return (
         <div>
           <div className="mt-20">
@@ -52,5 +58,6 @@ export default function Hero() {
             </div>
           </div>
         </div>
+>>>>>>> 66453e700d7fe7d2a9bed160a3807b2d69317f32
   );
 }
