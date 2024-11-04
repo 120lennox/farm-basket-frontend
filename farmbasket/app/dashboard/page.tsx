@@ -27,8 +27,20 @@ export default function dashboard(){
           </button>
           </div>
         </aside>
+
+         <main className="flex-1">
+        <header className="flex items-center justify-between p-4 bg-white shadow-md">
+          <div className="text-gray-700">
+            <span className="text-3xl font-bold">25</span>
+            <span className="ml-2">orders</span>
+            <div className="text-sm text-gray-500">Last 7 days</div>
+          </div>
+          </header>
+        </main>
         </div>
+        );
+      }
         
         
-    );
-}
+        
+    
