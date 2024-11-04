@@ -10,6 +10,11 @@ export default function dashboard(){
             <span>Notifications</span>
             <BellIcon className='w-6 h-6'/>
           </button>
+
+          <button className="flex items-center h-1 space-x-2 text-lg text-gray-700 hover:text-black">
+            <span>Messages</span>
+            <ChatBubbleBottomCenterTextIcon className="w-6 h-6" />
+          </button>
           </div>
         </aside>
         </div>
