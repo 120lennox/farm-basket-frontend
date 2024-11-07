@@ -1,8 +1,8 @@
-import { BellIcon, ChatBubbleBottomCenterTextIcon, ChartBarIcon, BuildingStorefrontIcon } from '@heroicons/react/24/outline';
+import { BellIcon, ChatBubbleBottomCenterTextIcon, ChartBarIcon, BuildingStorefrontIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 export default function dashboard(){
     return(
             <div className="flex">
-      <aside className="w-64 h-screen bg-white shadow-md p-6 flex flex-col">
+      <aside className="w-64 h-screen bg-white shadow-md p-6 flex flex-col border-r border-black">
 
         <h1 className="text-2xl font-bold mb-6">shop name</h1>
          <div className="space-y-4">
@@ -29,18 +29,29 @@ export default function dashboard(){
         </aside>
 
          <main className="flex-1">
-        <header className="flex items-center justify-between p-4 bg-white shadow-md">
+        <header className="flex items-center justify-between p-4 bg-white shadow-md border-b border-black">
           <div className="text-gray-700">
             <span className="text-3xl font-bold">25</span>
             <span className="ml-2">orders</span>
             <div className="text-sm text-gray-500">Last 7 days</div>
           </div>
-          </header>
+
+           <div className="  mx-auto space-x-2 bg-gray-300 rounded-full py-1 w-55">
+            <button className="px-2 py-1 text-white bg-green-500 rounded-full hover:bg-green-600">Dashboard</button>
+            <button className="text-black text-bold ">Website</button>
+          </div>
+
+          
+          <div className="flex items-center space-x-2">
+          <UserCircleIcon className="w-8 h-8 text-gray-400" /> 
+            <span className="text-gray-700">user</span>
+          </div>
+        </header>
         </main>
         </div>
         );
       }
-        
+         
         
         
     
