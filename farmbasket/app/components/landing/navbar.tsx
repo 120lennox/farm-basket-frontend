@@ -1,6 +1,4 @@
-import collections from "@/app/collections/page";
-import explore from "@/app/explore/page";
-import shops from "@/app/shops/page";
+import Link from "next/link";
 
 export default function Navbar() {
   return (
@@ -12,9 +10,9 @@ export default function Navbar() {
         <div>
           <div>
             <div>
-              <Link href={shops}>Shops</Link>
-              <Link href={collections}>Collections</Link>
-              <Link href={explore}>Explore</Link>
+              <Link href="/shops">Shops</Link>
+              <Link href="/collections">Collections</Link>
+              <Link href="/explore">Explore</Link>
             </div>
           </div>
 
