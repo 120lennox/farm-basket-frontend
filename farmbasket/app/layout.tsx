@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 // // app/layout.tsx
 // import '@fontsource/inter/variable.css'
 import "./globals.css";
+import Navbar from "./components/landing/navbar";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -31,8 +32,11 @@ export default function RootLayout({
     <html lang="en">
       <body
         /**className={`${geistSans.variable} ${geistMono.variable} antialiased`}**/
-        className="font-inter"
+        className="font-inter bg-yellow-100"
       >
+        <div className="mx-8">
+          <Navbar />
+        </div>
         {children}
       </body>
     </html>

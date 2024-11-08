@@ -5,7 +5,7 @@ export default function Hero() {
             <div>
               <div>
                 <div>
-                  <h1 className="text-[96px] font-semibold">
+                  <h1 className="text-[96px] font-semibold text-green-600">
                     Farm Basket
                   </h1>
                 </div>
