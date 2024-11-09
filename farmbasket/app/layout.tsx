@@ -34,10 +34,12 @@ export default function RootLayout({
         /**className={`${geistSans.variable} ${geistMono.variable} antialiased`}**/
         className="font-inter bg-yellow-100"
       >
-        <div className="mx-8">
-          <Navbar />
+        <div>
+          <div className="mx-8">
+            <Navbar />
+          </div>
+          {children}
         </div>
-        {children}
       </body>
     </html>
   );
