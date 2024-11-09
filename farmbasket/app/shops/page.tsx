@@ -1,6 +1,7 @@
 import ShopCard from "../components/products/shop_card"
 
-export default function shops(){
+
+const shops = async()=> {
     return <div>
         <div className="mx-8">
             <div className="mt-20">
@@ -8,8 +9,9 @@ export default function shops(){
                     <div className="text-[26px] font-semibold">Shops Available</div>
                     <div>
                         <div>
-                            <input className="" type="text" />
-                            <label>search</label>
+                            <form action="">
+                                <input className="px-8 py-2 border-none ring-1 focus:outline-green-600 rounded-full" type="text" name="search" placeholder="search shop" />
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -25,3 +27,5 @@ export default function shops(){
         </div>
     </div>
 }
+
+export default shops;
