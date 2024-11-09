@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <div className="flex flex-col md:flex-row justify-evenly items-center  px-4 py-6 bg-[#050e02] text-white">
+    <div className="flex flex-col md:flex-row justify-evenly items-center  px-4 py-6 bg-gradient-to-t from-[#000] via-[#06220a] to-[#094b04] text-white">
       <div className="flex flex-col items-start mb-6 md:mb-0">
         <h1 className="font-bold text-[24px] mb-2">
           FARM <span className="text-[#00df9a]">BASKET</span>

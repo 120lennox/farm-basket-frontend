@@ -1,13 +1,13 @@
 export default function NavBar() {
   return (
-    <div className="text-white  ">
-      <div className="flex justify-between items-center mx-auto h-24 max-w-[1240px] px-2">
+    <div className="text-white font-Inter  ">
+      <div className="flex justify-between items-center mx-auto h-24 max-w-[1240px] ">
         <div className="flex items-center">
           <h1 className="text-3xl font-extrabold text-black">
             FARM <span className="text-[#00df9a]">BASKET</span>
           </h1>
         </div>
-        <ul className="flex space-x-4 bg-slate-400 p-[10px] font-bold rounded-[45px] items-center">
+        <ul className="flex space-x-4 bg-[#D9D9D9] p-[10px] font-bold rounded-[45px] items-center">
           <li className="p-2 hover:text-[#00df9a] transition duration-100">
             Shops
           </li>
