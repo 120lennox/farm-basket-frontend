@@ -23,5 +23,8 @@ const config: Config = {
   plugins: [
     // require('daisyui'),
   ],
+  images: {
+    domains: ['https://i.pinimg.com'],
+  },
 };
 export default config;
