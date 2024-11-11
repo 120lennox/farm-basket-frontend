@@ -1,11 +1,10 @@
-import { fetchShopCardData } from "@/app/lib/data"
+import { fetchShopid } from "@/app/lib/data";
 
 const shopStore = async({params:{id}})=>{
-    const shopCardData = await fetchShopCardData()
-    console.log(shopCardData)
+    const shopid = await fetchShopid(id)
     return <div>
         <div>
-            {shopCardData?.map((shop)=>(
+            {shopid?.map((shop)=>(
                 <div key={shop.id}>
                     <div>
                         <div>
