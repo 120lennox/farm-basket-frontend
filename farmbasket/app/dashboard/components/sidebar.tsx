@@ -13,12 +13,12 @@ export default function Sidebar(){
                     <div className="flex items-center justify-center h-5 space-x-2 text-lg text-white">
                        <Link href="/messages">Messages</Link> 
                     </div>
-                    {/*<div className="flex items-center justify-center h-32 space-x-2 text-lg text-white">
+                <div className="flex items-center justify-center h-32 space-x-2 text-lg text-white">
                         <Link href="/statistics">Statistics</Link>
                     </div> 
                     <div className="flex items-center justify-center h-10 space-x-2 text-lg text-white ">
                     <Link href ="/stock">Stock</Link>
-                </div>*/}
+                </div>
             </div> 
             </div>
     </div>
