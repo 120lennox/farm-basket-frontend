@@ -5,37 +5,28 @@ const shopStore = async({params:{id}})=>{
     console.log(shopCardData)
     return <div>
         <div>
-            hello world
-            <div>
-                {shopCardData?.map((shop)=>{
-                    <div key={shop.id}>
+            {shopCardData?.map((shop)=>(
+                <div key={shop.id}>
+                    <div>
                         <div>
-                            <div>
-                                <div></div>
-                                <div>{shop.owner.name}</div>
-                            </div>
-                            <div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>
+                            <div>shop.name</div>
+                            <div>shop.des</div>
                             <div></div>
-                            <div>
-                                <hr />
-                            </div>
-                            <div>
-                                <div></div>
-                                <div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                            </div>
                         </div>
+
+                        <div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+
+                        <div></div>
+
+                        <div></div>
                     </div>
-                })}
-            </div>
+
+                </div>
+            ))}
         </div>
     </div>
 }

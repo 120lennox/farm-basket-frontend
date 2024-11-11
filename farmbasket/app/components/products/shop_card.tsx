@@ -7,11 +7,11 @@ const ShopCard = async()=>{
     const shops = await fetchShopCardData();
     console.log(shops)
     return <div>
-        <div className="flex justify-between items-center mt-5">
+        <div className="flex justify-between items-center mt-5 font-inter mb-3">
 
             <div className="grid grid-cols-2 gap-x-44 gap-y-10">
                 {shops.map((shop)=>(
-                    <div key={shop.id} className="bg-yellow-50 rounded-2xl p-2">
+                    <div key={shop.id} className="bg-yellow-50 rounded-2xl p-2 shadow-lg">
                         <div className="flex flex-row space-x-4 items-center">
                             <div>
                                 <Image 
@@ -24,8 +24,8 @@ const ShopCard = async()=>{
                             <div className="flex flex-col space-y-5 justify-center items-center">
                                 <div className="text-[20px] font-semibold text-center">{shop.name}</div>
                                 <div className="text-[16px] font-extralight">{shop.description}</div>
-                                <div className="">
-                                    <Link className="bg-green-600 text-white rounded-full px-3 py-2 font-semibold text-center" href={`/${shop.id}`}>Visit Shop</Link>
+                                <div className="mb-5">
+                                    <Link className="bg-green-600 text-white rounded-full px-3 py-2 font-semibold text-center" href={`/shops/${shop.id}`}>Visit Shop</Link>
                                 </div>
                             </div>
                         </div>
