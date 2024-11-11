@@ -8,26 +8,52 @@ const ShopCard = async()=>{
     console.log(shops)
     return <div>
         <div className="flex justify-between items-center mt-5">
-            {shops?.map((shop)=>(
-                <div key={shop.id} className="bg-white rounded-3xl flex flex-wrap ">
-                    <div className="">
-                        <div className="p-3 flex flex-row space-x-5 justify-between items-center">
+
+            <div className="grid grid-cols-2">
+                {shops.map((shop)=>(
+                    <div key={shop.id} className="bg-yellow-50 rounded-lg">
+                        <div>
                             <div>
-                                <Image src="https://i.pinimg.com/564x/b1/38/63/b1386383cb433a04acaee2b9420961e1.jpg" alt="description" width={200} height={300} />
+                                <Image 
+                                        src={shop.image}
+                                        alt="Image"
+                                        width={200}
+                                        height={300}
+                                />
                             </div>
-                            <div className="flex flex-col space-y-3">
-                                <div className="text-[20px] font-semibold">
-                                    {shop.name}
-                                </div>
-                                <div>Your one stop at amazing farm products</div>
+                            <div >
+                                <div className="">{shop.name}</div>
+                                <div>{shop.description}</div>
                                 <div>
-                                    <Link className="bg-green-600 text-white rounded-full font-semibold py-2 px-3" href={`/shop/${shop.id}`}>visit shop</Link>
+                                    <Link href={`/${shop.id}`}>Visit Shop</Link>
                                 </div>
                             </div>
                         </div>
                     </div>
+                ))}
+            </div>
+
+            {/* {shops?.map((shop)=>{
+                <div key={shop.id} className="">
+                    <div>
+                        test here
+                        <div>
+                            <Image src="https://i.pinimg.com/564x/b1/38/63/b1386383cb433a04acaee2b9420961e1.jpg"
+                                    alt="Water pump"
+                                    width={200}
+                                    height={400}
+                            />
+                        </div>
+                        <div>
+                            <div>{shop.name}</div>
+                            <div>{shop.description}</div>
+                            <div>
+                                <Link href="/">visit shop</Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            ))}
+            })} */}
         </div>
     </div>
 }

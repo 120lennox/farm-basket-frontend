@@ -1,6 +1,6 @@
 import { fetchShopCardData } from "@/app/lib/data"
 
-const shopStore = async()=>{
+const shopStore = async({params:{id}})=>{
     const shopCardData = await fetchShopCardData()
     console.log(shopCardData)
     return <div>
