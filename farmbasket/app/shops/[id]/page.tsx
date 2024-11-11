@@ -6,13 +6,16 @@ const shopStore = async({params}: PageProps)=>{
     const shopid = await fetchShopid(id);
     return <div>
         <div>
-            {shopid?.map((shop)=>(
-                <div key={shop.id}>
+                <div key={shopid.shopid}>
                     <div>
                         <div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                            <div>{shopid.name}</div>
+                            <div>
+                                {shopid.description}
+                            </div>
+                            <div>
+
+                            </div>
                         </div>
 
                         <div>
@@ -27,7 +30,6 @@ const shopStore = async({params}: PageProps)=>{
                     </div>
 
                 </div>
-            ))}
         </div>
     </div>
 }

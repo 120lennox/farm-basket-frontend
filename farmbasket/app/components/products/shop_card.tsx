@@ -11,7 +11,7 @@ const ShopCard = async()=>{
 
             <div className="grid grid-cols-2 gap-x-44 gap-y-10">
                 {shops.map((shop)=>(
-                    <div key={shop.id} className="bg-yellow-50 rounded-2xl p-2 shadow-lg">
+                    <div key={shop.shopid} className="bg-yellow-50 rounded-2xl p-2 shadow-lg">
                         <div className="flex flex-row space-x-4 items-center">
                             <div>
                                 <Image 
@@ -25,7 +25,7 @@ const ShopCard = async()=>{
                                 <div className="text-[20px] font-semibold text-center">{shop.name}</div>
                                 <div className="text-[16px] font-extralight">{shop.description}</div>
                                 <div className="mb-5">
-                                    <Link className="bg-green-600 text-white rounded-full px-3 py-2 font-semibold text-center" href={`/shops/${shop.id}`}>Visit Shop</Link>
+                                    <Link className="bg-green-600 text-white rounded-full px-3 py-2 font-semibold text-center" href={`/shops/${shop.shopid}`}>Visit Shop</Link>
                                 </div>
                             </div>
                         </div>
