@@ -21,7 +21,7 @@ const ShopCard = async()=>{
                                 </div>
                                 <div>Your one stop at amazing farm products</div>
                                 <div>
-                                    <Link className="bg-green-600 text-white rounded-full font-semibold py-2 px-3" href="/shops/shop.id">visit shop</Link>
+                                    <Link className="bg-green-600 text-white rounded-full font-semibold py-2 px-3" href={`/shop/${shop.id}`}>visit shop</Link>
                                 </div>
                             </div>
                         </div>
