@@ -12,7 +12,7 @@ export const fetchShopCardData = async () => {
         const result = await fetch("https://farm-basket3.onrender.com/shop/all")
         const data = await result.json()
 
-        console.log("fetching done")
+        console.log("API data", data)
 
         return data
         
