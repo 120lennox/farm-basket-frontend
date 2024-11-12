@@ -97,7 +97,7 @@ export default function SignUp() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen bg-gradient-to-t from-green-800 via-yellow-500 to-green-300 px-4">
+    <div className="flex flex-col justify-center items-center h-screen bg-yellow-100 px-4">
       <div className="bg-gradient-to-r from-green-700 via-yellow-300 to-green-900 h-[550px] rounded-[25px] text-center text-white font-serif flex flex-col justify-center items-center p-6">
         <h1 className="text-white text-[30px] font-bold text-2xl mb-6">
           Create New Account
