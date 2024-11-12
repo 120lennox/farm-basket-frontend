@@ -58,7 +58,7 @@ export default function Login() {
       setEmail("");
       setPassword("");
     } catch (error) {
-      setEmailError("An error occurred. Please try again.");
+      setEmailError("The email you entered does not belong to any account.");
     }
   }
 
@@ -101,7 +101,7 @@ export default function Login() {
             placeholder="Enter your Email"
             required
           />
-          {emailError && <p className="text-red-500 text-xs">{emailError}</p>}
+          {emailError && <p className="text-red-600 text-xs">{emailError}</p>}
 
           <input
             aria-label="Password"
