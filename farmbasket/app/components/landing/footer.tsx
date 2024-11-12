@@ -1,54 +1,32 @@
 export default function Footer() {
   return (
-    <div className="flex flex-col md:flex-row justify-evenly items-center  px-4 py-6 bg-gradient-to-t from-[#000] via-[#06220a] to-[#094b04] text-white">
-      <div className="flex flex-col items-start mb-6 md:mb-0">
-        <h1 className="font-bold text-[24px] mb-2">
-          FARM <span className="text-[#00df9a]">BASKET</span>
-        </h1>
-        <button className="bg-green-400 text-white p-3 rounded-full hover:bg-green-500 transition duration-300">
-          Download
-        </button>
-      </div>
-
-      <div className="flex space-x-8">
-        <ul className="flex flex-col items-center">
-          <li className="font-bold text-[20px] border-b ">What We Do</li>
-          <li className="py-1 pt-3 hover:text-[#00df9a] transition duration-300">
-            Features
-          </li>
-          <li className="py-1  hover:text-[#00df9a] transition duration-300">
-            Security
-          </li>
-          <li className="py-1 hover:text-[#00df9a] transition duration-300">
-            Markets
-          </li>
-        </ul>
-
-        <ul className="flex flex-col items-center">
-          <li className="font-bold text-[20px] border-b ">Who We Are</li>
-          <li className="py-1 pt-3 hover:text-[#00df9a] transition duration-300">
-            About Us
-          </li>
-          <li className="py-1 hover:text-[#00df9a] transition duration-300">
-            Our Team
-          </li>
-          <li className="py-1 hover:text-[#00df9a] transition duration-300">
-            Privacy Policy
-          </li>
-        </ul>
-
-        <ul className="flex flex-col items-center">
-          <li className="font-bold text-[20px] border-b ">Need Help?</li>
-          <li className="py-1 pt-3 hover:text-[#00df9a] transition duration-300">
-            Contact Us
-          </li>
-          <li className="py-1 hover:text-[#00df9a] transition duration-300">
-            Help Center
-          </li>
-          <li className="py-1 hover:text-[#00df9a] transition duration-300">
-            Security Tips
-          </li>
-        </ul>
+    <div className="bg-gradient-to-t from-[#000003] via-[#06061F] to-[#10111D] text-white">
+      <div className=" mx-8 flex justify-between ">
+        <div>
+          <h1 className=" font-bold mb-2 mt-8 text-[25px]">Farm Basket</h1>
+          <button className=" mt-5 bg-[#0AFA2E] p-3 px-9 rounded-[20px]">
+            Download
+          </button>
+        </div>
+        <div>
+          <h3 className=" font-bold mb-2 mt-8">what we do</h3>
+          <h3 className=" mb-2">Security</h3>
+          <h3 className=" mb-2">Markets</h3>
+          <h3 className=" mb-2">Feature</h3>
+        </div>
+        <div>
+          <h3 className=" font-bold mb-2 mt-8">Who we are</h3>
+          <h3 className=" mb-2">About Us</h3>
+          <h3 className=" mb-2">Our Team</h3>
+          <h3 className=" mb-2">Privay Policy</h3>
+        </div>
+        <div>
+          <h3 className=" font-bold mb-2 mt-8">Need help?</h3>
+          <h3 className=" mb-2">Countact Us</h3>
+          <h3 className=" mb-2">Help Center</h3>
+          <h3 className=" mb-2">Security Tips</h3>
+          <br />
+        </div>
       </div>
     </div>
   );
