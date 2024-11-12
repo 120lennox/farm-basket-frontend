@@ -13,10 +13,15 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        inter: ['Inter Variable', 'sans-serif'],  // Note the 'Variable' addition
+        inter: ['Inter Variable', 'sans-serif'], 
+        NovaScript: ['Nova Script', 'system-ui'], //new font
+        fira: ['Fira Code', 'monospace'],
         },
+        
     },
   },
-  plugins: [],
+  plugins: [
+    // require('daisyui'),
+  ],
 };
 export default config;
