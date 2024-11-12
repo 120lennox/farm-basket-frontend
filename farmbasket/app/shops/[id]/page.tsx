@@ -37,7 +37,10 @@ const shopStore = async({params}: PageProps)=>{
                             <div>
                                 <div>
                                     <Image 
-                                            
+                                           src=""
+                                           alt=""
+                                           width={}
+                                           height={} 
                                     />
                                 </div>
                                 <div></div>
