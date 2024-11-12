@@ -1,5 +1,5 @@
 import ShopCard from "../components/products/shop_card"
-import Footer from "../footer/page";
+import Footer from "../components/landing/footer";
 
 
 const shops = async()=> {
