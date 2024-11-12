@@ -12,8 +12,16 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        inter: ['Inter Variable', 'sans-serif'], 
+        NovaScript: ['Nova Script', 'system-ui'], //new font
+        fira: ['Fira Code', 'monospace'],
+        },
+        
     },
   },
-  plugins: [],
+  plugins: [
+    // require('daisyui'),
+  ],
 };
 export default config;
