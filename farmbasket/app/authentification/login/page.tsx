@@ -46,12 +46,14 @@ export default function Login() {
           </p>
           <div className="mt-6">
             <p className="text-xs">Don't have an account? Create one below.</p>
-            <Link
-              href="/authentification/signUp"
-              className="bg-green-900 text-white rounded-full px-4 py-2 mt-4 hover:bg-green-700 focus:outline-none"
-            >
-              SIGN UP
-            </Link>
+            <div className=" mt-3">
+              <Link
+                href="/authentification/signUp"
+                className="bg-green-900 text-white rounded-full px-4 py-2  hover:bg-green-700 focus:outline-none"
+              >
+                SIGN UP
+              </Link>
+            </div>
           </div>
         </header>
         <form
