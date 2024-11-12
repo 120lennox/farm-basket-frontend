@@ -8,7 +8,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const router = useRouter(); // useRouter for navigation
+  const router = useRouter();
 
   function validateEmail(email) {
     const emailRegex =
@@ -44,20 +44,21 @@ export default function Login() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.message || "Login failed. Please try again.");
+        if (data.message.includes("email")) {
+          setEmailError("Invalid email address.");
+        } else if (data.message.includes("password")) {
+          setPasswordError("Incorrect password.");
+        } else {
+          setEmailError("Login failed. Please check your credentials.");
+        }
+        return;
       }
 
-      // depending on what weather ma guys will say we store the token or not
-      // localStorage.setItem("token", data.token);
-
-      // Redirect to the landing page
-      router.push("/");
-
-      // Clear form fields on success
+      router.push("/"); // Redirect to landing page on successful login
       setEmail("");
       setPassword("");
     } catch (error) {
-      alert(error.message);
+      setEmailError("An error occurred. Please try again.");
     }
   }
 
