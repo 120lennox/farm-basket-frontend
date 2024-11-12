@@ -1,13 +1,11 @@
-export default function Hero() {
-  return (
-    <div>
-      <div className="mt-20">
+export default function Hero(){
+  return <div>
+    <div className="mt-20">
         <div>
           <div>
             <div>
-<<<<<<<<< Temporary merge branch 1
+
               <h1 className="text-[96px] font-semibold">Farm Basket</h1>
-=========
               <div>
                 <div>
                   <h1 className="text-[96px] font-semibold">
@@ -27,7 +25,6 @@ export default function Hero() {
                   Get Started
                 </button>
               </div>
->>>>>>>>> Temporary merge branch 2
             </div>
             <div className="w-[950px]">
               <p className="text-[32px]">
@@ -61,5 +58,6 @@ export default function Hero() {
             </div>
           </div>
         </div>
-  );
+  </div>
+  </div>
 }
