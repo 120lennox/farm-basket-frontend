@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div>
       <div className="mx-8">
-        <div>
+        <div className="mt-16">
           <Hero />
         </div>
         <section className="mt-16 mb-10">
