@@ -20,8 +20,8 @@ export default function Navbar() {
         </div>
         <div className="">
           <div className="space-x-8 text-[19px] font-medium">
-            <Link href="/">Login</Link>
-            <Link href="">Register</Link>
+            <Link href="/authentication/login">Login</Link>
+            <Link href="/authentication/register">Register</Link>
           </div>
         </div>
       </div>
