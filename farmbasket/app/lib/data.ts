@@ -24,10 +24,11 @@ export const fetchShopCardData = async () => {
 
 export const fetchShopid = async(id)=>{
     try{
+        console.log(id)
         const result = await fetch(`https://farm-basket3.onrender.com/shop/${id}`)
         const data = await result.json()
 
-        console.log('done..')
+        console.log("New data", data)
 
         return data
     } catch(error){
