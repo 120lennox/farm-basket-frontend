@@ -1,7 +1,24 @@
+import Faq from "./components/landing/faq";
+import Hero from "./components/landing/hero";
+
+import Footer from "./components/landing/footer";
+
+
 export default function Home() {
   return (
-    <div className=" h-screen bg-gradient-to-bl from bg-green-400 via-yellow-300 to-orange-400">
-      <h1>will be using this as the landing page</h1>
+    <div>
+      <div className="mx-8">
+        <div>
+          <Hero />
+        </div>
+        <section className="mt-16 mb-10">
+          <div>
+            <Faq />
+          </div>
+        </section>
+        
+      </div>
+      <Footer />
     </div>
   );
 }
