@@ -1,19 +1,22 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const router = useRouter(); // useRouter for navigation
 
   function validateEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex =
+      /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     setEmailError("");
@@ -24,14 +27,38 @@ export default function Login() {
       return;
     }
 
-    if (password.length < 6) {
-      setPasswordError("Password must be at least 6 characters long.");
+    if (password.length < 8) {
+      setPasswordError("Password must be at least 8 characters long.");
       return;
     }
 
-    setEmail("");
-    setPassword("");
-    alert("Login successful!");
+    try {
+      const res = await fetch("https://farm-basket3.onrender.com/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Login failed. Please try again.");
+      }
+
+      // depending on what weather ma guys will say we store the token or not
+      // localStorage.setItem("token", data.token);
+
+      // Redirect to the landing page
+      router.push("/");
+
+      // Clear form fields on success
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   return (
@@ -46,10 +73,10 @@ export default function Login() {
           </p>
           <div className="mt-6">
             <p className="text-xs">Don't have an account? Create one below.</p>
-            <div className=" mt-3">
+            <div className="mt-3">
               <Link
                 href="/authentification/signUp"
-                className="bg-green-900 text-white rounded-full px-4 py-2  hover:bg-green-700 focus:outline-none"
+                className="bg-green-900 text-white rounded-full px-4 py-2 hover:bg-green-700 focus:outline-none"
               >
                 SIGN UP
               </Link>
@@ -57,8 +84,6 @@ export default function Login() {
           </div>
         </header>
         <form
-          action="https://farm-basket3.onrender.com/auth/login"
-          method="POST"
           onSubmit={handleSubmit}
           className="flex flex-col items-center gap-4 p-6"
         >
@@ -73,6 +98,7 @@ export default function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your Email"
+            required
           />
           {emailError && <p className="text-red-500 text-xs">{emailError}</p>}
 
@@ -83,6 +109,7 @@ export default function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
+            required
           />
           {passwordError && (
             <p className="text-red-500 text-xs">{passwordError}</p>
