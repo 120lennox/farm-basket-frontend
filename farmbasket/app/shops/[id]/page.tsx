@@ -1,6 +1,7 @@
 import { PageProps } from "@/.next/types/app/layout";
 import { fetchShopid } from "@/app/lib/data";
 import Image from "next/image";
+import Link from "next/link";
 
 const shopStore = async({params}: PageProps)=>{
     const {id} = await params
@@ -33,18 +34,44 @@ const shopStore = async({params}: PageProps)=>{
                             <hr  />
                         </div>
 
-                        <div>
+                        <div className="mt-10 mb-10">
                             <div>
-                                <div>
-                                    <Image 
-                                           src=""
-                                           alt=""
-                                           width={}
-                                           height={} 
+                                <div className="rounded-sm">
+                                    <Image className="rounded-2xl"
+                                           src="https://i.pinimg.com/736x/05/3f/47/053f47cb444eacf993befed3f5945f58.jpg"
+                                           alt="Fertilizer bag"
+                                           width={400}
+                                           height={500} 
                                     />
                                 </div>
-                                <div></div>
+                                <div className="absolute -bottom-[55%] left-[3rem]">
+
+                                    <div className="bg-neutral-50 rounded-3xl p-5 flex flex-col space-y-1">
+                                        <div className="flex flex-row justify-between">
+                                            <div className="text-[18px] font-semibold">
+                                                Fertlizer <span>50KG</span>
+                                            </div>
+                                            <div className="text-[18px] font-semibold">
+                                                <span>MK</span>95,000
+                                            </div>
+                                        </div>
+                                        <div className="w-1/2">
+                                            Suitable for crops like Maize, tobacco, rice etc
+                                        </div>
+                                        <div></div>
+                                        <div>
+                                            <div className="">
+                                                <Link className="bg-green-500 text-white rounded-full py-2 px-4 font-semibold" href="/">add to cart</Link>
+                                            </div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+
+                        <div className="mt-10">
+
                         </div>
                     </div>
 
