@@ -10,21 +10,21 @@ export default function Footer() {
         </div>
         <div>
           <h3 className=" font-bold mb-2 mt-8">what we do</h3>
-          <h3 className=" mb-2">Security</h3>
-          <h3 className=" mb-2">Markets</h3>
-          <h3 className=" mb-2">Feature</h3>
+          <h3 className=" mb-2 hover:text-[#0afa2e]">Security</h3>
+          <h3 className=" mb-2 hover:text-[#0afa2e]">Markets</h3>
+          <h3 className=" mb-2 hover:text-[#0afa2e]">Feature</h3>
         </div>
         <div>
           <h3 className=" font-bold mb-2 mt-8">Who we are</h3>
-          <h3 className=" mb-2">About Us</h3>
-          <h3 className=" mb-2">Our Team</h3>
-          <h3 className=" mb-2">Privay Policy</h3>
+          <h3 className=" mb-2 hover:text-[#0afa2e]">About Us</h3>
+          <h3 className=" mb-2 hover:text-[#0afa2e]">Our Team</h3>
+          <h3 className=" mb-2 hover:text-[#0afa2e]">Privay Policy</h3>
         </div>
         <div>
           <h3 className=" font-bold mb-2 mt-8">Need help?</h3>
-          <h3 className=" mb-2">Countact Us</h3>
-          <h3 className=" mb-2">Help Center</h3>
-          <h3 className=" mb-2">Security Tips</h3>
+          <h3 className=" mb-2 hover:text-[#0afa2e]">Countact Us</h3>
+          <h3 className=" mb-2 hover:text-[#0afa2e]">Help Center</h3>
+          <h3 className=" mb-2 hover:text-[#0afa2e]">Security Tips</h3>
           <br />
         </div>
       </div>

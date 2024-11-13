@@ -26,7 +26,6 @@ export default function SignUp() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    // Reset errors and server message
     setUserNameError("");
     setEmailError("");
     setPasswordError("");
@@ -68,7 +67,7 @@ export default function SignUp() {
     }
 
     if (isValid) {
-      const userData = { userName, email, password, location };
+      const userData = { name: userName, email, password, location };
 
       try {
         const response = await fetch(
@@ -180,9 +179,9 @@ export default function SignUp() {
           Already have an account?{" "}
           <Link
             href="/authentification/login"
-            className="text-yellow-300 hover:underline font-bold"
+            className="text-yellow-300 bg-green-500 p-1 px-3 rounded-lg hover:underline font-bold"
           >
-            Log in
+            Login
           </Link>
         </p>
       </div>
