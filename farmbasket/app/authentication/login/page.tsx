@@ -63,7 +63,7 @@ export default function Login() {
   }
 
   return (
-    <div className=" bg-yellow-100 to-green-900 flex justify-center items-center h-screen">
+    <div className="rounded-lg shadow-lg flex justify-center items-center h-screen">
       <div className="bg-white h-[650px] w-[500px] border shadow-lg rounded-lg">
         <header className="bg-gradient-to-r from-green-700 via-yellow-300 to-green-900 h-[300px] text-center text-white font-serif flex flex-col justify-center items-center p-6">
           <h1 className="font-extrabold text-[30px]">Welcome to Farm Basket</h1>

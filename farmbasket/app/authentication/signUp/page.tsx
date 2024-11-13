@@ -96,8 +96,8 @@ export default function SignUp() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen bg-yellow-100 px-4">
-      <div className="bg-gradient-to-r from-green-700 via-yellow-300 to-green-900 h-[550px] rounded-[25px] text-center text-white font-serif flex flex-col justify-center items-center p-6">
+    <div className="flex flex-col justify-center items-center h-screen px-4">
+      <div className="bg-gradient-to-r from-green-700 via-yellow-300 to-green-900 h-[550px] rounded-[25px] text-center shadow-md text-white font-serif flex flex-col justify-center items-center p-6">
         <h1 className="text-white text-[30px] font-bold text-2xl mb-6">
           Create New Account
         </h1>
@@ -178,8 +178,8 @@ export default function SignUp() {
         <p className="text-sm text-white mt-4">
           Already have an account?{" "}
           <Link
-            href="/authentification/login"
-            className="text-yellow-300 bg-green-500 p-1 px-3 rounded-lg hover:underline font-bold"
+            href="/authentication/login"
+            className="text-yellow-300 hover:underline font-bold"
           >
             Login
           </Link>
