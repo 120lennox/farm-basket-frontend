@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 // import '@fontsource/inter/variable.css'
 import "./globals.css";
 import Navbar from "./components/landing/navbar";
+import { usePathname } from "next/navigation";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -27,16 +28,21 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
-  return (
+}>) 
+
+  const pathname = usePathname()
+  const isDashboardRouter = pathname.startsWith('/dashboard')
+{
+return (
     <html lang="en">
       <body
         /**className={`${geistSans.variable} ${geistMono.variable} antialiased`}**/
         className="font-Poppins  bg-yellow-50"
       >
+
         <div>
           <div className="mx-8">
-            <Navbar />
+            { !isDashboardRouter && <Navbar />}
           </div>
           {children}
         </div>
