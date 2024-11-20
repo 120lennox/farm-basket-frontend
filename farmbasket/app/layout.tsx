@@ -32,7 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         /**className={`${geistSans.variable} ${geistMono.variable} antialiased`}**/
-        className="font-Geist bg-yellow-100"
+        className="font-Poppins  bg-yellow-50"
       >
         <div>
           <div className="mx-8">

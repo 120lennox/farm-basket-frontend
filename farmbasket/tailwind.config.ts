@@ -11,13 +11,20 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        //custom colors
+        customBlue: {
+          800: '#06061F',
+          850: '#01020E',
+          900: '#01020E',
+        }
       },
       fontFamily: {
         inter: ['Inter Variable', 'sans-serif'], 
         NovaScript: ['Nova Script', 'system-ui'], //new font
         fira: ['Fira Code', 'monospace'],
         Montserrat: ['Montserrat', 'sans-serif'],
-        Geist: ['Geist', 'sans-serif']
+        Geist: ['Geist', 'sans-serif'],
+        Poppins: ['Poppins', 'sans-serif']
         },
         
     },
