@@ -1,12 +1,12 @@
 import Link from "next/link"
 export default function Sidebar(){
     return <div>
-        <div className="mt-10">
-            <div>
+        <div className="mt-10 flex flex-col space-y-5">
+            <div className="font-bold text-[30px]">
                 Farm Basket
             </div>
             <div>
-                <input type="text" />
+                <input type="text" className="bg-customBlue-800 bor" />
             </div>
             <div>
                 <Link href="/orders">orders</Link>

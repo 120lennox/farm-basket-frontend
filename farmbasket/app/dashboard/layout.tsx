@@ -8,16 +8,16 @@ export default function DashboardLayout({
 }: {
     children: React.ReactNode;
 }){
-    return <div>
-        <div className="bg-gradient-to-b from-customBlue-850 via-customBlue-800 to-customBlue-900">
-            <div>
-                <div>
-                    <Sidebar />
-                </div>
+    return (
+        <div className="min-h-screen text-white bg-gradient-to-b from-customBlue-850 via-customBlue-800 to-customBlue-900 relative">
+          <div className="mx-8">
+            <div className="absolute left-8 top-0 h-full">
+                <Sidebar />
             </div>
-            <div>
+            <div className="pl-[sidebar-width]">
                 {children}
             </div>
+          </div>
         </div>
-    </div>
+      )
 }
