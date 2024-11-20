@@ -83,14 +83,30 @@ export default function SignUp() {
 
         const data = await response.json();
 
+      
+        }
+
+        //once registration is successfull
         if (response.ok) {
           setServerMessage("Registration successful!");
-          router.push("/"); // Redirect on success
+          //will be string the token to local storage 
+        if (data.token) {
+            localStorage.setItem("authToken", data.token);
+          }
+
+          router.push("/"); // fo to this page 
         } else {
           setServerMessage(`Error: ${data.message || "Failed to register"}`);
         }
       } catch (error) {
-        setServerMessage("An error occurred. Please try again later.");
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.message
+        ) {
+          setServerMessage(error.response.data.message);
+        }
+        console.error("Error in creating an Acount", error);
       }
     }
   }
