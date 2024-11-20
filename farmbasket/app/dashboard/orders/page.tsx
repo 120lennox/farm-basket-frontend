@@ -1,7 +1,7 @@
-export default function messages(){
+export default function orders(){
     return <div>
         <div>
-            messages
+            orders
         </div>
     </div>
 }

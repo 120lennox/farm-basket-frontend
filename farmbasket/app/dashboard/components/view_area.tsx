@@ -1,7 +1,7 @@
-export default function messages(){
+export default function view_card(){
     return <div>
         <div>
-            messages
+            
         </div>
     </div>
 }

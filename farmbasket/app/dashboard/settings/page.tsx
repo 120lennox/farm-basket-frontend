@@ -1,7 +1,7 @@
-export default function messages(){
+export default function settings(){
     return <div>
         <div>
-            messages
+            settings
         </div>
     </div>
 }
