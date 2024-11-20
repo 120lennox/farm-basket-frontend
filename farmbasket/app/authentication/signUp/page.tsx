@@ -26,6 +26,7 @@ export default function SignUp() {
   async function handleSubmit(e) {
     e.preventDefault();
 
+    // Reset errors and server message
     setUserNameError("");
     setEmailError("");
     setPasswordError("");
@@ -35,12 +36,12 @@ export default function SignUp() {
 
     let isValid = true;
 
-    if (!userName) {
+    if (!userName.trim()) {
       setUserNameError("Username is required");
       isValid = false;
     }
 
-    if (!email) {
+    if (!email.trim()) {
       setEmailError("Email is required");
       isValid = false;
     } else if (!validateEmail(email)) {
@@ -48,7 +49,7 @@ export default function SignUp() {
       isValid = false;
     }
 
-    if (!password) {
+    if (!password.trim()) {
       setPasswordError("Password is required");
       isValid = false;
     } else if (password.length < 8) {
@@ -61,7 +62,7 @@ export default function SignUp() {
       isValid = false;
     }
 
-    if (!location) {
+    if (!location.trim()) {
       setLocationError("Location is required");
       isValid = false;
     }
@@ -83,30 +84,18 @@ export default function SignUp() {
 
         const data = await response.json();
 
-      
-        }
-
-        //once registration is successfull
         if (response.ok) {
           setServerMessage("Registration successful!");
-          //will be string the token to local storage 
-        if (data.token) {
-            localStorage.setItem("authToken", data.token);
+          if (data.token) {
+            localStorage.setItem("authToken", data.token); // Save token to localStorage
           }
-
-          router.push("/"); // fo to this page 
+          router.push("/"); // Redirect to the homepage
         } else {
           setServerMessage(`Error: ${data.message || "Failed to register"}`);
         }
       } catch (error) {
-        if (
-          error.response &&
-          error.response.data &&
-          error.response.data.message
-        ) {
-          setServerMessage(error.response.data.message);
-        }
-        console.error("Error in creating an Acount", error);
+        console.error("Error in creating an account:", error);
+        setServerMessage("Network error. Please try again later.");
       }
     }
   }
