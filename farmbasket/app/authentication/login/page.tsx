@@ -10,6 +10,7 @@ export default function Login() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
+  const [visible, setVisible] = useState(false); //this is for forget password
   const router = useRouter();
 
   function validateEmail(email) {
@@ -71,7 +72,7 @@ export default function Login() {
   }
 
   return (
-    <frameElement>
+    <div>
       <div className="rounded-lg shadow-lg flex justify-center items-center h-screen">
         <div className="bg-white h-[650px] w-[500px] border shadow-lg rounded-lg">
           <header className="bg-gradient-to-r from-green-700 via-yellow-300 to-green-900 h-[300px] text-center text-white font-serif flex flex-col justify-center items-center p-6">
@@ -147,12 +148,12 @@ export default function Login() {
                 <input type="checkbox" className="mr-1" />
                 Remember me
               </label>
-              <Link
-                href="/authentification/forgotPass"
+              <button
                 className="text-green-700 hover:underline"
+                onClick={(e) => setVisible(true)}
               >
                 Forgot password?
-              </Link>
+              </button>
             </div>
 
             <button
@@ -164,7 +165,7 @@ export default function Login() {
           </form>
         </div>
       </div>
-      <ForgotPassword />
-    </frameElement>
+      <ForgotPassword isVisible={visible} onClose={() => setVisible(false)} />
+    </div>
   );
 }
