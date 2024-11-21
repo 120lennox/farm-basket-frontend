@@ -16,7 +16,11 @@ const config: Config = {
           800: '#06061F',
           850: '#01020E',
           900: '#01020E',
-        }
+        },
+        
+        CustomGreen: {
+          500: '#0AFA2E',
+        },
       },
       fontFamily: {
         inter: ['Inter Variable', 'sans-serif'], 
