@@ -1,6 +1,7 @@
 import React from "react";
 import Footer from "../components/landing/footer";
 import Sidebar from "./components/sidebar";
+import Link from "next/link";
 
 // dashboard layout
 export default function DashboardLayout({
@@ -17,7 +18,7 @@ export default function DashboardLayout({
                 </div>
             </div>
             <div className="absolute left-[330px] top-6">
-              <div className="bg-CustomWhite-200 w-[1000px] h-[600px] rounded-md">
+              <div className="bg-CustomWhite-200 w-[1000px] h-[600px] rounded-md fixed">
                 {children}
               </div>
             </div>

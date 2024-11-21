@@ -3,8 +3,8 @@ import { usePathname } from "next/navigation"
 import Link from "next/link"
 
 
-const NavLink({ href, Children }) =>{
-    const pathname = usePathname()
+const NavLink = ({ href, Children }) =>{
+    const pathname = usePathname();
 
     const isActive = pathname == href;
 
@@ -21,4 +21,4 @@ const NavLink({ href, Children }) =>{
     );
 }
 
-export default NavLink;
+export default  NavLink;
