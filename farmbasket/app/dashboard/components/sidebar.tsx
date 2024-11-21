@@ -1,4 +1,6 @@
 import Link from "next/link"
+import NavLink from "./navLink"
+
 export default function Sidebar(){
     return <div>
         <div className="mt-10 flex flex-col space-y-10">
@@ -8,9 +10,11 @@ export default function Sidebar(){
             <div>
                 <input type="text" className="bg-customBlue-800 px-8 py-2 border-none ring-1 focus:ring-CustomGreen-500 focus:outline-none rounded-full" />
             </div>
-            <div className="hover:bg-CustomGreen-500 py-3 px-1 rounded-md">
+            {/* <div className="hover:bg-CustomGreen-500 py-3 px-1 rounded-md">
                 <Link href="/dashboard/orders" className="">Orders</Link>
-            </div>
+            </div> */}
+
+            <NavLink href="/dashboard/orders">Orders</NavLink>
             <div className="hover:bg-CustomGreen-500 py-3 px-1 rounded-md">
                 <Link href="/dashboard/messages">Messages</Link>
             </div>
