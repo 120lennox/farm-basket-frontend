@@ -16,22 +16,68 @@ export default function Login() {
     return emailRegex.test(email);
   }
 
+  // async function handleSubmit(e) {
+  //   e.preventDefault();
+
+  //   setEmailError("");
+  //   setPasswordError("");
+
+  //   if (!validateEmail(email)) {
+  //     setEmailError("Please enter a valid email address.");
+  //     return;
+  //   }
+
+  //   if (password.length < 8) {
+  //     setPasswordError("Password must be at least 8 characters long.");
+  //     return;
+  //   }
+
+  //   try {
+  //     const res = await fetch("https://farm-basket3.onrender.com/auth/login", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ email, password }),
+  //     });
+
+  //     const data = await res.json();
+
+  //     if (!res.ok) {
+  //       if (data.message.includes("email")) {
+  //         setEmailError("Invalid email address.");
+  //       } else if (data.message.includes("password")) {
+  //         setPasswordError("Incorrect password.");
+  //       } else {
+  //         setEmailError("Login failed. Please check your credentials.");
+  //       }
+  //       return;
+  //     }
+
+  //     router.push("/"); // Redirect to landing page on successful login
+  //     setEmail("");
+  //     setPassword("");
+  //   } catch (error) {
+  //     setEmailError("The email you entered does not belong to any account.");
+  //   }
+  // }
+
   async function handleSubmit(e) {
     e.preventDefault();
-
+  
     setEmailError("");
     setPasswordError("");
-
+  
     if (!validateEmail(email)) {
       setEmailError("Please enter a valid email address.");
       return;
     }
-
+  
     if (password.length < 8) {
       setPasswordError("Password must be at least 8 characters long.");
       return;
     }
-
+  
     try {
       const res = await fetch("https://farm-basket3.onrender.com/auth/login", {
         method: "POST",
@@ -40,9 +86,10 @@ export default function Login() {
         },
         body: JSON.stringify({ email, password }),
       });
-
+  
       const data = await res.json();
-
+      console.log(data.message)
+  
       if (!res.ok) {
         if (data.message.includes("email")) {
           setEmailError("Invalid email address.");
@@ -53,7 +100,16 @@ export default function Login() {
         }
         return;
       }
-
+  
+      // Store the token in sessionStorage
+      if (data.message) {
+        sessionStorage.setItem('message', data.message);
+        // You might also want to store user data if it's included in the response
+        if (data.user) {
+          sessionStorage.setItem('user', JSON.stringify(data.user));
+        }
+      }
+  
       router.push("/"); // Redirect to landing page on successful login
       setEmail("");
       setPassword("");
