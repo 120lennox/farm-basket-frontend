@@ -43,7 +43,7 @@ export default function Checkout() {
             ? `You rated this product ${rating} out of 5 stars.`
             : "Click on the stars to rate this product."}
         </p>
-        <div className="flex justify-between">
+        <div className="flex justify-between border-y-2 mt-1">
           <h1 className=" font-bold text-lg">
             <span className=" text-sm align-super">mk</span>550,00
           </h1>
@@ -51,6 +51,21 @@ export default function Checkout() {
           <h1 className=" font-bold text-lg">
             <span className=" text-sm align-super">mk</span>60,00
           </h1>
+        </div>
+        <div className=" flex justify-between border-y-2 mt-2">
+          <div className=" bg-slate-700">
+            <button className=" p-2">-</button>
+            <button className=" p-2">1</button>
+            <button className=" p-2">+</button>
+          </div>
+          <div>
+            <p>only 4 items left!</p>
+            <p>Don’t miss it</p>
+          </div>
+        </div>
+        <div className=" flex justify-center items-center border-y-2 mt-2">
+          <button className="p-2">Buy Now</button>
+          <button className="p-2">Add to Cart</button>
         </div>
       </div>
     </div>
