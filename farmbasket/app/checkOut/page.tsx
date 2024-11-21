@@ -11,14 +11,12 @@ export default function Checkout() {
 
   return (
     <div className="flex flex-col lg:flex-row justify-evenly items-center p-8 bg-gray-100 min-h-screen">
-      {/* Image Section */}
       <div className="flex justify-center items-center w-full lg:w-1/2 mb-8 lg:mb-0">
         <div className="w-[300px] h-[300px] bg-gray-300 rounded-lg flex items-center justify-center">
           <h1 className="text-gray-600 font-semibold">Image Placeholder</h1>
         </div>
       </div>
 
-      {/* Product Details Section */}
       <div className="bg-yellow-800 p-6 rounded-lg shadow-lg text-white w-full lg:w-1/2 max-w-lg">
         <h1 className="font-extrabold text-2xl mb-4">Water Pump</h1>
         <p className="mb-6 text-gray-200">
@@ -26,7 +24,6 @@ export default function Checkout() {
           residential and light commercial applications.
         </p>
 
-        {/* Star Rating Section */}
         <div className="flex items-center gap-2 mb-4">
           {[...Array(5)].map((_, index) => (
             <svg
@@ -47,7 +44,6 @@ export default function Checkout() {
             : "Click on the stars to rate this product."}
         </p>
 
-        {/* Pricing Section */}
         <div className="flex justify-between items-center border-b-2 pb-4 mb-4">
           <div>
             <p className="text-lg font-bold">
@@ -57,7 +53,6 @@ export default function Checkout() {
           <h2 className="text-green-400 font-bold">Save MK 60,000</h2>
         </div>
 
-        {/* Quantity Selector */}
         <div className="flex justify-between items-center border-b-2 pb-4 mb-4">
           <div className="flex items-center bg-gray-700 rounded-lg overflow-hidden">
             <button
@@ -75,7 +70,9 @@ export default function Checkout() {
             </button>
           </div>
           <div>
-            <p className="text-sm">Only 4 items left!</p>
+            <p className="text-sm">
+              Only <span> {}</span> items left!
+            </p>
             <p className="text-xs text-gray-300">Don’t miss it</p>
           </div>
         </div>
@@ -83,10 +80,10 @@ export default function Checkout() {
         {/* Call-to-Action Buttons */}
         <div className="flex justify-center items-center gap-4">
           <button className="px-6 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-500">
-            Buy Now
+            Add to Cart
           </button>
           <button className="px-6 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-500">
-            Add to Cart
+            Message
           </button>
         </div>
       </div>
