@@ -9,26 +9,26 @@ export default function Sidebar(){
                 <input type="text" className="bg-customBlue-800 px-8 py-2 border-none ring-1 focus:ring-CustomGreen-500 focus:outline-none rounded-full" />
             </div>
             <div className="hover:bg-CustomGreen-500 py-3 px-1 rounded-md">
-                <Link href="/orders" className="">Orders</Link>
+                <Link href="/dashboard/orders" className="">Orders</Link>
             </div>
             <div className="hover:bg-CustomGreen-500 py-3 px-1 rounded-md">
-                <Link href="/messages">Messages</Link>
+                <Link href="/dashboard/messages">Messages</Link>
             </div>
             <div className="hover:bg-CustomGreen-500 py-3 px-1 rounded-md">
-                <Link href="/statistics">Statistics</Link>
+                <Link href="/dashboard/statistics">Statistics</Link>
             </div>
             <div className="hover:bg-CustomGreen-500 py-3 px-1 rounded-md">
-                <Link href="/inventory">Inventory</Link>
+                <Link href="/dashboard/inventory">Inventory</Link>
             </div>
             <div className="hover:bg-CustomGreen-500 py-3 px-1 rounded-md">
-                <Link href="/notifications">Notifications</Link>
+                <Link href="/dashboard/notification">Notifications</Link>
             </div>
             <div className="mt-8 flex flex-col space-y-7">
                 <div className="hover:bg-CustomGreen-500 py-3 px-1 rounded-md">
-                    <Link href="/settings">Settings</Link>
+                    <Link href="/dashboard/settings">Settings</Link>
                 </div>
                 <div className="hover:bg-CustomGreen-500 py-3 px-1 rounded-md">
-                    <Link href="/logout">Logout</Link>
+                    <Link href="/dashboard/logout">Logout</Link>
                 </div>
             </div>
             

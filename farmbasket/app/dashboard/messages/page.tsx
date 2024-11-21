@@ -1,4 +1,4 @@
-export default function messages(){
+export default function Page(){
     return <div>
         <div>
             messages

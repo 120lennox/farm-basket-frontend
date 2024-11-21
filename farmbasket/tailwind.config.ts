@@ -21,6 +21,10 @@ const config: Config = {
         CustomGreen: {
           500: '#0AFA2E',
         },
+
+        CustomWhite: {
+          200: '#D9D9D9'
+        }
       },
       fontFamily: {
         inter: ['Inter Variable', 'sans-serif'], 
