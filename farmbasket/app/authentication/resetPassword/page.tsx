@@ -14,11 +14,7 @@ export default function ResetPassword() {
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
         <div className="flex justify-center mb-6">
-          <img
-            src="/Log.png"
-            alt="logo"
-            className="w-32 h-32 object-cover rounded-full"
-          />
+          <img src="/Log.png" alt="logo" className="w-35 h-35 object-cover " />
         </div>
         <h1 className="text-xl font-bold text-gray-800 mb-2 text-center">
           Reset Account Password
@@ -33,14 +29,14 @@ export default function ResetPassword() {
             value={password}
             placeholder="New Password"
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
           />
           <input
             type={showPassword ? "text" : "password"}
             value={confirmPassword}
             placeholder="Confirm New Password"
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
           />
           <div className="flex items-center gap-2">
             <input
@@ -48,7 +44,7 @@ export default function ResetPassword() {
               id="showPassword"
               checked={showPassword}
               onChange={() => setShowPassword(!showPassword)}
-              className="w-4 h-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              className="w-4 h-4 text-blue-600 focus:ring-green-500 border-gray-300 rounded"
             />
             <label htmlFor="showPassword" className="text-sm text-gray-600">
               Show Password
@@ -56,7 +52,7 @@ export default function ResetPassword() {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition duration-200"
+            className="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 transition duration-200"
           >
             Reset Password
           </button>
