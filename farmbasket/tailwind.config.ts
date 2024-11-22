@@ -16,8 +16,7 @@ const config: Config = {
         inter: ['Inter Variable', 'sans-serif'], 
         NovaScript: ['Nova Script', 'system-ui'], //new font
         fira: ['Fira Code', 'monospace'],
-        Montserrat: ['Montserrat', 'sans-serif'],
-        Geist: ['Geist', 'sans-serif']
+        Poppins: ['Poppins', 'sans-serif']
         },
         
     },
