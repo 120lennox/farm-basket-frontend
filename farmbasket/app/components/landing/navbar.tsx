@@ -68,6 +68,9 @@
 import Link from "next/link";
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { ShoppingBagIcon } from "@heroicons/react/24/outline";
+
+
 
 export default function Navbar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -149,14 +152,18 @@ export default function Navbar() {
             </div>
           ) : (
             // Show user menu for authenticated users
-            <div className="space-x-8 text-[19px] font-medium">
-              <Link href="/dashboard">Dashboard</Link>
-              <button
-                onClick={handleLogout}
-                className="hover:text-red-500"
-              >
-                Logout
-              </button>
+            // <div className="space-x-8 text-[19px] font-medium">
+            //   <Link href="/dashboard">Dashboard</Link>
+            //   <button
+            //     onClick={handleLogout}
+            //     className="hover:text-red-500"
+            //   >
+            //     Logout
+            //   </button>
+            // </div>
+            <div>
+              <div> <ShoppingBagIcon className="size-5 font-semibold" /></div>
+              <div>{/* items here */}</div>
             </div>
           )}
         </div>
@@ -164,3 +171,6 @@ export default function Navbar() {
     </div>
   );
 }
+
+
+
