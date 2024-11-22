@@ -4,13 +4,13 @@ export default function Hero() {
         <div>
           <div>
             <div>
-              <div>
-                <h1 className="text-[80px] font-semibold text-green-600">
+              <div className="mt-10">
+                <h1 className="text-7xl font-semibold text-green-600">
                   Farm Basket
                 </h1>
               </div>
-              <div className="w-[950px]">
-                <p className="text-[26px]">
+              <div className="mt-10 w-[950px]">
+                <p className="text-3xl">
                   From Seeds to Harvest: Your One-Stop Shop for All Things Agriculture
                   Seeds to Harvest: Your One-Stop Shop for All Things Agriculture Your
                   Harvest: Your One-Stop Shop for All Things Agriculture

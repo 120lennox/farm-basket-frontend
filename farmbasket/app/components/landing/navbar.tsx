@@ -69,12 +69,26 @@ import Link from "next/link";
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
-
+import CreateShopModal from "../modal_components/create_shop";
 
 
 export default function Navbar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCreateShop = (shopData) => {
+    // shop creation logic
+    console.log('Shop created:', shopData);
+
+  };
+
+  const handleLogout = () => {
+    // Implement logout logic
+    console.log('Logging out');
+    // Clear user session, tokens, etc.
+  };
 
   // useEffect(() => {
   //   // Check authentication status when component mounts
@@ -127,14 +141,14 @@ export default function Navbar() {
     <div>
       <div className="flex justify-between items-center">
         <div>
-          <Link className="font-NovaScript text-[36px] font-semibold" href="/">
+          <Link className="font-NovaScript text-[32px] font-semibold" href="/">
             Farm Basket 🧺
           </Link>
         </div>
 
         <div>
           <div className="bg-white px-10 py-2 mt-2 rounded-full shadow-md">
-            <div className="space-x-28 font-medium text-[19px]">
+            <div className="space-x-28 font-medium text-[16px]">
               <Link href="/shops">Shops</Link>
               <Link href="/collections">Collections</Link>
               <Link href="/explore">Explore</Link>
@@ -146,7 +160,7 @@ export default function Navbar() {
           {!isAuthenticated ? (
             
             // Show Login/Register for non-authenticated users
-            <div className="space-x-8 text-[19px] font-medium">
+            <div className="space-x-8 text-[16px] font-medium">
               <Link href="/authentication/login">Login</Link>
               <Link href="/authentication/signUp">Register</Link>
             </div>
@@ -161,9 +175,21 @@ export default function Navbar() {
             //     Logout
             //   </button>
             // </div>
-            <div>
-              <div> <ShoppingBagIcon className="size-5 font-semibold" /></div>
-              <div>{/* items here */}</div>
+            <div className="flex flex-row justify-between items-center space-x-16">
+              <div> <ShoppingBagIcon className="size-8 font-semibold" /></div>
+              <div>
+                <div className=" mt-2 dropdown dropdown-hover dropdown-left dropdown-bottom">
+                  <div tabIndex={0} role="button" className="btn rounded-full">L</div>
+                  <ul tabIndex={0} className="dropdown-content bg-white text-black menu rounded-box z-[1] w-52 p-2 mr-5 shadow">
+                    <li>
+                      <a onClick={() => setIsModalOpen(true)} >Create Shop</a>
+                    </li>
+                    <li>
+                      <a onClick={handleLogout} >Logout</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           )}
         </div>

@@ -38,7 +38,7 @@ return (
     <html lang="en">
       <body
         /**className={`${geistSans.variable} ${geistMono.variable} antialiased`}**/
-        className="font-Poppins  bg-yellow-50"
+        className="font-Poppins   dark:bg-yellow-50 dark:text-black"
       >
 
         <div>
