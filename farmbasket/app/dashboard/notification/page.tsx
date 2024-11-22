@@ -4,7 +4,7 @@ import Sidebar from "../components/sidebar";
 import Header from "../components/header";
 import React, { useState } from "react";
 
-// Sample Notification Data
+
 interface Notification {
   id: number;
   message: string;
@@ -24,25 +24,25 @@ const sampleNotifications: Notification[] = [
 export default function NotificationPage() {
   const [visibleCount, setVisibleCount] = useState(5);
 
-  // Function to load more notifications
+  
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + 5);
   };
 
   return (
     <div className="flex h-screen">
-      {/* Sidebar */}
+      
       <div className="w-1/6">
         <Sidebar />
       </div>
 
-      {/* Main Content */}
+      
       <div className="flex flex-col w-5/6">
         <Header />
         <div className="p-6 bg-gray-100 flex-1 overflow-y-auto">
           <h2 className="text-2xl font-bold mb-4">Notifications</h2>
 
-          {/* Notification List */}
+          
           <div className="space-y-4">
             {sampleNotifications.slice(0, visibleCount).map((notification) => (
               <div
@@ -57,12 +57,12 @@ export default function NotificationPage() {
             ))}
           </div>
 
-          {/* Load More Button */}
+          
           {visibleCount < sampleNotifications.length && (
             <div className="mt-4 flex justify-center">
               <button
                 onClick={handleLoadMore}
-                className="bg-green-500 text-white px-4 py-2 rounded shadow hover:bg-green-600"
+                className="bg-green-500 text-white px-4 py-2 rounded shadow hover:bg-green-500"
               >
                 See Previous Notifications
               </button>
