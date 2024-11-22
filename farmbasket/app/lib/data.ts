@@ -37,3 +37,33 @@ export const fetchShopid = async(id)=>{
     }
 }
 
+export const fetchProduct = async () =>{
+    try{
+        console .log("fetching started...")
+        const result = await fetch ('https://farm-basket3.onrender.com/products')
+        const data = await result.json()
+
+        console.log("API data", data)
+
+        return data
+    } catch(error){
+        console.error('server error:', error)
+        throw new Error('Failed to fetch products')
+    }
+}
+
+export const fetchProductid = async(id)=>{
+    try{
+        console.log(id)
+        const result = await fetch(`https://farm-basket3.onrender.com/Product/${id}`)
+        const data = await result.json()
+
+        console.log("New data", data)
+
+        return data
+    } catch(error){
+        console.error('server error:', error)
+        throw new Error('Failed to fetch product')
+    }
+}
+
