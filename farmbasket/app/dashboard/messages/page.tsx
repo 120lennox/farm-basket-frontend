@@ -149,7 +149,7 @@ export default function Messages() {
                       <div
                         className={`max-w-xs p-2 rounded-lg ${
                           message.sender === "You"
-                            ? "bg-blue-500 text-white rounded-br-none"
+                            ? "bg-green-500 text-white rounded-br-none"
                             : "bg-gray-200 text-black rounded-bl-none"
                         }`}
                       >
