@@ -4,7 +4,7 @@ import Header from "../components/header";
 import Sidebar from "../components/sidebar";
 
 export default function Messages() {
-  // Define types
+  
   type Message = {
     sender: string;
     content: string;
@@ -16,7 +16,7 @@ export default function Messages() {
     messages: Message[];
   };
 
-  // State for conversations
+  
   const [conversations, setConversations] = useState<Conversation[]>([
     {
       id: "1",
@@ -44,11 +44,11 @@ export default function Messages() {
     },
   ]);
 
-  // States for selected conversation and message input
+  
   const [currentConversationId, setCurrentConversationId] = useState<string | null>(null);
   const [messageInput, setMessageInput] = useState("");
 
-  // Handle conversation selection
+  
   const handleConversationClick = (conversationId: string) => {
     setCurrentConversationId(conversationId);
   };
@@ -92,19 +92,19 @@ export default function Messages() {
 
       if (!response.ok) {
         console.error("Failed to send message to the server");
-        // Optionally, handle the error (e.g., revert optimistic UI update)
+        
       }
     } catch (error) {
       console.error("Error sending message:", error);
     }
   };
 
-  // Get the selected conversation
+  
   const selectedConversation = conversations.find(
     (conversation) => conversation.id === currentConversationId
   );
 
-  // JSX for the component
+  
   return (
     <div className="flex h-screen">
       <div className="w-1/6">
@@ -113,7 +113,7 @@ export default function Messages() {
       <div className="flex flex-col w-5/6">
         <Header />
         <div className="flex h-full">
-          {/* Conversation List */}
+        
           <div className="w-1/3 border-r overflow-y-auto">
             <ul>
               {conversations.map((conversation) => (
@@ -130,11 +130,11 @@ export default function Messages() {
             </ul>
           </div>
 
-          {/* Chat Area */}
+          
           <div className="w-2/3 p-4 flex flex-col">
             {selectedConversation ? (
               <div className="flex flex-col flex-grow">
-                {/* Messages */}
+              
                 <div
                   className="flex-grow overflow-y-auto mb-4"
                   style={{ maxHeight: "500px" }}
@@ -160,7 +160,7 @@ export default function Messages() {
                   ))}
                 </div>
 
-                {/* Input Area */}
+                
                 <div className="flex items-center">
                   <input
                     type="text"
