@@ -20,7 +20,7 @@ export default function ForgotPassword({ isVisible, onClose }) {
 
     try {
       const response = await fetch(
-        "https://farm-basket3.onrender.com/auth/forgot-password", // Ensure this endpoint is correct
+        "https://farm-basket3.onrender.com/auth/forgot-password",
         {
           method: "POST",
           headers: {

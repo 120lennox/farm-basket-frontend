@@ -8,8 +8,6 @@ export default function ResetPassword() {
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    // Handle password reset logic here
   }
 
   return (
