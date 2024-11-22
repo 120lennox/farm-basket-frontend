@@ -4,15 +4,20 @@ import { useState } from "react";
 export default function ResetPassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  function handleSubmit(e) {
+    e.preventDefault();
+    setPassword("");
+    setConfirmPassword("");
+  }
 
   return (
-    <div className="flex justify-center items-center min-h-screen ">
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
+    <div className="flex justify-center items-center min-h-screen  bg-gray-100">
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6 hover:bg-slate-200">
         <div className="flex justify-center mb-6">
           <img
-            src="/images/logo-alone.png"
+            src="/Log.png"
             alt="logo"
-            className="w-24 h-24 object-contain"
+            className="w-32 h-32 object-cover rounded-full"
           />
         </div>
         <h1 className="text-xl font-bold text-gray-800 mb-2 text-center">
@@ -22,7 +27,7 @@ export default function ResetPassword() {
           Enter a new password for{" "}
           <span className="font-semibold">daudelen@gmail.com</span>
         </p>
-        <form className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="password"
             value={password}
