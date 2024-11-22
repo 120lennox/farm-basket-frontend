@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { log } from "console";
 
 export default function SignUp() {
   const router = useRouter();
@@ -102,70 +101,79 @@ export default function SignUp() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen  p-4">
-      <div className="bg-white rounded-xl shadow-lg w-full max-w-lg p-8">
-        <div className="flex justify-center mb-6">
-          <img src="/Log.png" alt="logo" className="w-30 h-30 object-cover " />
+    <div className="flex flex-col justify-center items-center min-h-screen p-4 ">
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6 space-y-6">
+        <div className="flex justify-center">
+          <img
+            src="/Log.png"
+            alt="Farm Basket Logo"
+            className="w-25 h-23 object-contain  "
+          />
         </div>
-        <h1 className="text-gray-800 text-2xl font-bold text-center mb-4">
-          Create a New Account
+        <p className="text-gray-600 text-center">
+          Welcome to <strong>Farm Basket</strong>, your gateway to fresh farm
+          produce! Join us today and connect with the best in farm trading.
+        </p>
+        <h1 className="text-gray-800 text-2xl font-extrabold text-center">
+          Create an Account
         </h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             aria-label="Username"
             onChange={(e) => setUserName(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg placeholder-gray-500 focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             type="text"
             value={userName}
             placeholder="Username"
           />
           {userNameError && (
-            <p className="text-red-600 text-sm">{userNameError}</p>
+            <p className="text-red-500 text-sm">{userNameError}</p>
           )}
 
           <input
             aria-label="Email Address"
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg placeholder-gray-500 focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             type="email"
             value={email}
             placeholder="Email"
           />
-          {emailError && <p className="text-red-600 text-sm">{emailError}</p>}
+          {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
 
           <input
+            aria-label="Location"
             onChange={(e) => setLocation(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg placeholder-gray-500 focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             type="text"
             value={location}
             placeholder="Location"
           />
           {locationError && (
-            <p className="text-red-600 text-sm">{locationError}</p>
+            <p className="text-red-500 text-sm">{locationError}</p>
           )}
 
           <input
             aria-label="Password"
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg placeholder-gray-500 focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             type={showPassword ? "text" : "password"}
             value={password}
             placeholder="Password"
           />
           {passwordError && (
-            <p className="text-red-600 text-sm">{passwordError}</p>
+            <p className="text-red-500 text-sm">{passwordError}</p>
           )}
 
           <input
             aria-label="Confirm Password"
             onChange={(e) => setConfirmPass(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg placeholder-gray-500 focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             type={showPassword ? "text" : "password"}
             value={confirmPass}
             placeholder="Confirm Password"
           />
           {confirmPassError && (
-            <p className="text-red-600 text-sm">{confirmPassError}</p>
+            <p className="text-red-500 text-sm">{confirmPassError}</p>
           )}
 
           <div className="flex items-center gap-2">
@@ -186,17 +194,17 @@ export default function SignUp() {
 
           <button
             type="submit"
-            className="w-full bg-green-500 text-white py-3 rounded-lg font-medium hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-300 transition"
+            className="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 focus:ring-4 focus:ring-green-300 transition"
           >
             Sign Up
           </button>
         </form>
         {serverMessage && (
           <p
-            className={`mt-4 text-center ${
+            className={`mt-4 text-center font-medium ${
               serverMessage === "Registration successful!"
                 ? "text-green-600"
-                : "text-red-600"
+                : "text-red-500"
             }`}
           >
             {serverMessage}
@@ -206,7 +214,7 @@ export default function SignUp() {
           Already have an account?{" "}
           <Link
             href="/authentication/login"
-            className="text-green-700 hover:underline"
+            className="text-green-600 font-semibold hover:underline"
           >
             Login
           </Link>
