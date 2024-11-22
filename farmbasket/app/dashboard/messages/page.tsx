@@ -53,17 +53,17 @@ export default function Messages() {
     setCurrentConversationId(conversationId);
   };
 
-  // Function to send a message
+  
   const sendMessage = async () => {
     if (!messageInput.trim() || !currentConversationId) return;
 
-    // Create a new message object
+    
     const newMessage: Message = {
       sender: "You",
       content: messageInput,
     };
 
-    // Optimistically update the UI
+    
     setConversations((prevConversations) =>
       prevConversations.map((conversation) =>
         conversation.id === currentConversationId
@@ -75,10 +75,10 @@ export default function Messages() {
       )
     );
 
-    // Clear the input
+    
     setMessageInput("");
 
-    // Send the message to the database
+    
     try {
       const response = await fetch("https://farm-basket3.onrender.com/messages/send", {
         method: "POST",
