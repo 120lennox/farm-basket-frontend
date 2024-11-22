@@ -5,26 +5,25 @@ export default function Hero() {
           <div>
             <div>
               <div className="mt-10">
-                <h1 className="text-7xl font-semibold text-green-600">
+                <h1 className="text-7xl text-CustomGreen-500">
                   Farm Basket
                 </h1>
               </div>
               <div className="mt-10 w-[950px]">
-                <p className="text-3xl">
-                  From Seeds to Harvest: Your One-Stop Shop for All Things Agriculture
-                  Seeds to Harvest: Your One-Stop Shop for All Things Agriculture Your
-                  Harvest: Your One-Stop Shop for All Things Agriculture
+                <p className="text-3xl font-light">
+                Connecting Farmers, Feeding Communities
+                Bridging Local Agriculture with Global Markets
                 </p>
               </div>
             </div>
             <div className="mt-8">
-              <button className="bg-green-600 p-4 px-10 rounded-2xl text-white font-semibold">
-                Get Started
+              <button className="bg-CustomGreen-500 p-3 rounded-2xl text-white hover:bg-green-400 transition-all ease-in">
+                Get started
               </button>
             </div>
           </div>
-          <div className="mt-10 mb-5">
-            <div className="text-[48px] font-semibold">
+          <div className="mt-28 mb-5">
+            <div className="text-4xl text-CustomGreen-500">
               What's Trending?
             </div>
           </div>

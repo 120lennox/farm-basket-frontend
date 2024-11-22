@@ -84,12 +84,6 @@ export default function Navbar() {
 
   };
 
-  const handleLogout = () => {
-    // Implement logout logic
-    console.log('Logging out');
-    // Clear user session, tokens, etc.
-  };
-
   // useEffect(() => {
   //   // Check authentication status when component mounts
   //   const checkAuth = () => {
@@ -146,12 +140,12 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div>
+        <div className="font-light">
           <div className="bg-white px-10 py-2 mt-2 rounded-full shadow-md">
             <div className="space-x-28 font-medium text-[16px]">
-              <Link href="/shops">Shops</Link>
-              <Link href="/collections">Collections</Link>
-              <Link href="/explore">Explore</Link>
+              <Link className="font-light hover:text-CustomGreen-500 transition-all ease-in-out" href="/shops">Shops</Link>
+              <Link className="font-light hover:text-CustomGreen-500 transition-all ease-in-out" href="/collections">Collections</Link>
+              <Link className="font-light hover:text-CustomGreen-500 transition-all ease-in-out" href="/explore">Explore</Link>
             </div>
           </div>
         </div>
@@ -161,8 +155,8 @@ export default function Navbar() {
             
             // Show Login/Register for non-authenticated users
             <div className="space-x-8 text-[16px] font-medium">
-              <Link href="/authentication/login">Login</Link>
-              <Link href="/authentication/signUp">Register</Link>
+              <Link className="font-light hover:text-CustomGreen-500 transition-all ease-in-out"  href="/authentication/login">Login</Link>
+              <Link className="font-light hover:text-CustomGreen-500 transition-all ease-in-out"  href="/authentication/signUp">Register</Link>
             </div>
           ) : (
             // Show user menu for authenticated users
@@ -178,7 +172,7 @@ export default function Navbar() {
             <div className="flex flex-row justify-between items-center space-x-16">
               <div> <ShoppingBagIcon className="size-8 font-semibold" /></div>
               <div>
-                <div className=" mt-2 dropdown dropdown-hover dropdown-left dropdown-bottom">
+                <div className=" mt-2 dropdown dropdown-left dropdown-bottom">
                   <div tabIndex={0} role="button" className="btn rounded-full">L</div>
                   <ul tabIndex={0} className="dropdown-content bg-white text-black menu rounded-box z-[1] w-52 p-2 mr-5 shadow">
                     <li>
@@ -188,6 +182,11 @@ export default function Navbar() {
                       <a onClick={handleLogout} >Logout</a>
                     </li>
                   </ul>
+                  <CreateShopModal 
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    onCreateShop={handleCreateShop}
+                  />
                 </div>
               </div>
             </div>
