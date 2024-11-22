@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "chekOut/image";
 
 export default function Checkout() {
   const [rating, setRating] = useState(0);
@@ -13,7 +14,13 @@ export default function Checkout() {
     <div className="flex flex-col lg:flex-row justify-evenly items-center p-8 bg-gray-100 min-h-screen">
       <div className="flex justify-center items-center w-full lg:w-1/2 mb-8 lg:mb-0">
         <div className="w-[300px] h-[300px] bg-gray-300 rounded-lg flex items-center justify-center">
-          <h1 className="text-gray-600 font-semibold">Image Placeholder</h1>
+          <Image
+            src="/checkOut/water pump.jpg"
+            alt="Power Generator"
+            width={300}
+            height={300}
+            className="object-cover rounded-lg"
+          />
         </div>
       </div>
 
@@ -57,14 +64,14 @@ export default function Checkout() {
           <div className="flex items-center bg-gray-700 rounded-lg overflow-hidden">
             <button
               className="px-4 py-2 text-white hover:bg-gray-600"
-              onClick={(deceaseItems) => setItems(items - 1)}
+              onClick={() => setItems(items - 1)}
             >
               -
             </button>
             <button className="px-4 py-2 text-white font-bold">{items}</button>
             <button
               className="px-4 py-2 text-white hover:bg-gray-600"
-              onClick={(increaseItems) => setItems(items + 1)}
+              onClick={() => setItems(items + 1)}
             >
               +
             </button>
@@ -77,7 +84,6 @@ export default function Checkout() {
           </div>
         </div>
 
-        {/* Call-to-Action Buttons */}
         <div className="flex justify-center items-center gap-4">
           <button className="px-6 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-500">
             Add to Cart
