@@ -1,16 +1,17 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from "next/navigation"; // Import useRouter
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
-  const router = useRouter(); // Initialize router
+  const router = useRouter();
 
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const [location, setLocation] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const [userNameError, setUserNameError] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -35,12 +36,12 @@ export default function SignUp() {
 
     let isValid = true;
 
-    if (!userName) {
+    if (!userName.trim()) {
       setUserNameError("Username is required");
       isValid = false;
     }
 
-    if (!email) {
+    if (!email.trim()) {
       setEmailError("Email is required");
       isValid = false;
     } else if (!validateEmail(email)) {
@@ -48,7 +49,7 @@ export default function SignUp() {
       isValid = false;
     }
 
-    if (!password) {
+    if (!password.trim()) {
       setPasswordError("Password is required");
       isValid = false;
     } else if (password.length < 8) {
@@ -61,7 +62,7 @@ export default function SignUp() {
       isValid = false;
     }
 
-    if (!location) {
+    if (!location.trim()) {
       setLocationError("Location is required");
       isValid = false;
     }
@@ -85,101 +86,135 @@ export default function SignUp() {
 
         if (response.ok) {
           setServerMessage("Registration successful!");
-          router.push("/"); // Redirect on success
+          if (data.token) {
+            localStorage.setItem("authToken", data.token);
+          }
+          router.push("/");
         } else {
           setServerMessage(`Error: ${data.message || "Failed to register"}`);
         }
       } catch (error) {
-        setServerMessage("An error occurred. Please try again later.");
+        console.error("Error in creating an account:", error);
+        setServerMessage("Network error. Please try again later.");
       }
     }
   }
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen px-4">
-      <div className="bg-gradient-to-r from-green-700 via-yellow-300 to-green-900 h-[550px] rounded-[25px] text-center shadow-md text-white font-serif flex flex-col justify-center items-center p-6">
-        <h1 className="text-white text-[30px] font-bold text-2xl mb-6">
-          Create New Account
+    <div className="flex flex-col justify-center items-center min-h-screen p-4 ">
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6 space-y-6">
+        <div className="flex justify-center">
+          <img
+            src="/Log.png"
+            alt="Farm Basket Logo"
+            className="w-25 h-23 object-contain  "
+          />
+        </div>
+        <p className="text-gray-600 text-center">
+          Welcome to <strong>Farm Basket</strong>, your gateway to fresh farm
+          produce! Join us today and connect with the best in farm trading.
+        </p>
+        <h1 className="text-gray-800 text-2xl font-extrabold text-center">
+          Create an Account
         </h1>
-        <form onSubmit={handleSubmit}>
-          <div className="flex flex-col justify-center items-center">
-            <input
-              aria-label="Username"
-              onChange={(e) => setUserName(e.target.value)}
-              className="text-white w-[350px] p-3 mt-3 border border-green-700 rounded-full bg-green-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-700"
-              type="text"
-              value={userName}
-              placeholder="Enter user name"
-            />
-            {userNameError && <p className="text-red-900">{userNameError}</p>}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            aria-label="Username"
+            onChange={(e) => setUserName(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            type="text"
+            value={userName}
+            placeholder="Username"
+          />
+          {userNameError && (
+            <p className="text-red-500 text-sm">{userNameError}</p>
+          )}
 
-            <input
-              aria-label="Email Address"
-              className="text-white w-[350px] p-3 mt-3 border border-green-700 rounded-full bg-green-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-700"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your Email"
-            />
-            {emailError && <p className="text-red-900">{emailError}</p>}
+          <input
+            aria-label="Email Address"
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            type="email"
+            value={email}
+            placeholder="Email"
+          />
+          {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
 
-            <input
-              type="text"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              placeholder="Enter your location"
-              className="text-white w-[350px] p-3 mt-3 border border-green-900 rounded-full bg-green-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-700"
-            />
-            {locationError && <p className="text-red-900">{locationError}</p>}
+          <input
+            aria-label="Location"
+            onChange={(e) => setLocation(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            type="text"
+            value={location}
+            placeholder="Location"
+          />
+          {locationError && (
+            <p className="text-red-500 text-sm">{locationError}</p>
+          )}
 
-            <input
-              aria-label="Password"
-              className="text-white w-[350px] p-3 mt-3 border border-green-700 rounded-full bg-green-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-700"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your Password"
-            />
-            {passwordError && <p className="text-red-900">{passwordError}</p>}
+          <input
+            aria-label="Password"
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            type={showPassword ? "text" : "password"}
+            value={password}
+            placeholder="Password"
+          />
+          {passwordError && (
+            <p className="text-red-500 text-sm">{passwordError}</p>
+          )}
 
-            <input
-              aria-label="Confirm Password"
-              className="text-white w-[350px] p-3 mt-3 border border-green-700 rounded-full bg-green-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-700"
-              type="password"
-              value={confirmPass}
-              onChange={(e) => setConfirmPass(e.target.value)}
-              placeholder="Confirm your Password"
-            />
-            {confirmPassError && (
-              <p className="text-red-900">{confirmPassError}</p>
-            )}
+          <input
+            aria-label="Confirm Password"
+            onChange={(e) => setConfirmPass(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            type={showPassword ? "text" : "password"}
+            value={confirmPass}
+            placeholder="Confirm Password"
+          />
+          {confirmPassError && (
+            <p className="text-red-500 text-sm">{confirmPassError}</p>
+          )}
 
-            <button
-              type="submit"
-              className="bg-green-700 text-white font-semibold rounded-full w-[350px] py-3 mt-5 hover:bg-green-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-600"
+          <div className="flex items-center gap-2">
+            <input
+              id="showPassword"
+              type="checkbox"
+              checked={showPassword}
+              onChange={(e) => setShowPassword(e.target.checked)}
+              className="cursor-pointer"
+            />
+            <label
+              htmlFor="showPassword"
+              className="text-gray-600 cursor-pointer"
             >
-              Sign Up
-            </button>
-
-            {/* Display server response message */}
-            {serverMessage && (
-              <p
-                className={`mt-3 ${
-                  serverMessage === "Registration successful!"
-                    ? "text-green-700"
-                    : "text-red-900"
-                }`}
-              >
-                {serverMessage}
-              </p>
-            )}
+              Show Password
+            </label>
           </div>
+
+          <button
+            type="submit"
+            className="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 focus:ring-4 focus:ring-green-300 transition"
+          >
+            Sign Up
+          </button>
         </form>
-        <p className="text-sm text-white mt-4">
+        {serverMessage && (
+          <p
+            className={`mt-4 text-center font-medium ${
+              serverMessage === "Registration successful!"
+                ? "text-green-600"
+                : "text-red-500"
+            }`}
+          >
+            {serverMessage}
+          </p>
+        )}
+        <p className="text-center text-gray-600 mt-4">
           Already have an account?{" "}
           <Link
             href="/authentication/login"
-            className="text-yellow-300 hover:underline font-bold"
+            className="text-green-600 font-semibold hover:underline"
           >
             Login
           </Link>
