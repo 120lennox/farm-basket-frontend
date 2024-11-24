@@ -22,6 +22,40 @@ export const fetchShopCardData = async () => {
     }
 }
 
+// fetch all users 
+export const fetchUsers = async()=> {
+    try{
+        console.log("fetching users...")
+
+        const result = await fetch('https://farm-basket3.onrender.com/users/all')
+        const data = await result.json()
+
+        console.log("Users: ", data)
+
+        return data
+    } catch(error){
+        console.error('server error: ', error)
+        throw new Error('failed to fetch users')
+    }
+}
+
+// fetch user by id 
+export const fetchUserById = async (id) => {
+    try{
+        console.log("fetching user by id...")
+        const result = await fetch(`https://farm-basket3.onrender.com/users/${id}`)
+        const data = await result.json()
+
+        console.log("User: ", data)
+
+        return data
+    
+    } catch(error){
+        console.error('server error: ', error)
+        throw new Error('failed to fetch user by id')
+    }
+}
+
 export const fetchShopid = async(id)=>{
     try{
         console.log(id)
