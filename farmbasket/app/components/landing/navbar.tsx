@@ -143,9 +143,9 @@ export default function Navbar() {
         <div className="font-light">
           <div className="bg-white px-10 py-2 mt-2 rounded-full shadow-md">
             <div className="space-x-28 font-medium text-[16px]">
-              <Link className="font-light hover:text-CustomGreen-500 transition-all ease-in-out" href="/shops">Shops</Link>
-              <Link className="font-light hover:text-CustomGreen-500 transition-all ease-in-out" href="/collections">Collections</Link>
-              <Link className="font-light hover:text-CustomGreen-500 transition-all ease-in-out" href="/explore">Explore</Link>
+              <Link className="font-light hover:text-CustomGreen-600 transition-all ease-in-out" href="/shops">Shops</Link>
+              <Link className="font-light hover:text-CustomGreen-600 transition-all ease-in-out" href="/collections">Collections</Link>
+              <Link className="font-light hover:text-CustomGreen-600 transition-all ease-in-out" href="/explore">Explore</Link>
             </div>
           </div>
         </div>
@@ -155,8 +155,8 @@ export default function Navbar() {
             
             // Show Login/Register for non-authenticated users
             <div className="space-x-8 text-[16px] font-medium">
-              <Link className="font-light hover:text-CustomGreen-500 transition-all ease-in-out"  href="/authentication/login">Login</Link>
-              <Link className="font-light hover:text-CustomGreen-500 transition-all ease-in-out"  href="/authentication/signUp">Register</Link>
+              <Link className="font-light hover:text-CustomGreen-600 transition-all ease-in-out"  href="/authentication/login">Login</Link>
+              <Link className="font-light hover:text-CustomGreen-600 transition-all ease-in-out"  href="/authentication/signUp">Register</Link>
             </div>
           ) : (
             // Show user menu for authenticated users

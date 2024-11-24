@@ -20,6 +20,7 @@ const config: Config = {
         
         CustomGreen: {
           500: '#0AFA2E',
+          600: '#0afa2e',
         },
 
         CustomWhite: {
