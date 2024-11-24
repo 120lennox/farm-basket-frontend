@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, createContext, useContext } from "react";
-import Header from "../components/header";
 import Sidebar from "../components/sidebar";
 
 // Product type definition
@@ -84,9 +83,7 @@ const StockPage = () => {
         <Sidebar />
       </div>
 
-      {/* Main Content */}
-      <div className="flex flex-col w-5/6">
-        <Header />
+      
         <div className="flex-1 p-4 bg-gray-100 overflow-y-auto">
           <h2 className="text-2xl font-bold mb-4">Product Management</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -146,7 +143,7 @@ const StockPage = () => {
           />
         )}
       </div>
-    </div>
+  
   );
 };
 

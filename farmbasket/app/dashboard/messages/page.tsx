@@ -1,7 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Header from "../components/header";
-import Sidebar from "../components/sidebar";
 
 export default function Messages() {
   
@@ -22,7 +20,7 @@ export default function Messages() {
       id: "1",
       name: "Alice",
       messages: [
-        { sender: "Alice", content: "Hey, how are you?" },
+        { sender: "", content: "Hey, how are you?" },
         { sender: "You", content: "I'm good, thanks! How about you?" },
       ],
     },
@@ -30,7 +28,7 @@ export default function Messages() {
       id: "2",
       name: "Bob",
       messages: [
-        { sender: "Bob", content: "Are we still on for today?" },
+        { sender: "", content: "Are we still on for today?" },
         { sender: "You", content: "Yes, see you at 5!" },
       ],
     },
@@ -38,7 +36,7 @@ export default function Messages() {
       id: "3",
       name: "Lisbeth",
       messages: [
-        { sender: "Lisbeth", content: "Do you still have the tractor?" },
+        { sender: "", content: "Do you still have the tractor?" },
         { sender: "You", content: "Yes, I do." },
       ],
     },
@@ -106,21 +104,17 @@ export default function Messages() {
 
   
   return (
-    <div className="flex h-screen">
-      <div className="w-1/6">
-        <Sidebar />
-      </div>
-      <div className="flex flex-col w-5/6">
-        <Header />
-        <div className="flex h-full">
+    <div className="flex bg-gray-100 h-screen">
+      
         
-          <div className="w-1/3 border-r overflow-y-auto">
+        
+          <div className="w-1/3 text-black overflow-y-auto">
             <ul>
               {conversations.map((conversation) => (
                 <li
                   key={conversation.id}
                   className={`p-2 cursor-pointer ${
-                    currentConversationId === conversation.id ? "bg-blue-200" : ""
+                    currentConversationId === conversation.id ? "bg-green-500" : ""
                   }`}
                   onClick={() => handleConversationClick(conversation.id)}
                 >
@@ -149,11 +143,11 @@ export default function Messages() {
                       <div
                         className={`max-w-xs p-2 rounded-lg ${
                           message.sender === "You"
-                            ? "bg-green-500 text-white rounded-br-none"
+                            ? "bg-green-500 text-black rounded-br-none"
                             : "bg-gray-200 text-black rounded-bl-none"
                         }`}
                       >
-                        <strong>{message.sender !== "You" && `${message.sender}:`}</strong>{" "}
+                        <strong>{message.sender !== "You" && `${message.sender}`}</strong>{" "}
                         {message.content}
                       </div>
                     </div>
@@ -171,18 +165,18 @@ export default function Messages() {
                   />
                   <button
                     onClick={sendMessage}
-                    className="ml-2 bg-green-500 text-white px-4 py-2 rounded"
+                    className="ml-2 bg-green-500 text-black px-4 py-2 rounded"
                   >
                     Send
                   </button>
                 </div>
               </div>
             ) : (
-              <p>Select a conversation to view messages.</p>
+              <p className="text-black">Select a conversation to view messages.</p>
             )}
           </div>
         </div>
-      </div>
-    </div>
+      
+    
   );
 }

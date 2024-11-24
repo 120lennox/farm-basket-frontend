@@ -1,7 +1,4 @@
 "use client";
-
-import Sidebar from "../components/sidebar";
-import Header from "../components/header";
 import React, { useState } from "react";
 
 
@@ -32,15 +29,8 @@ export default function NotificationPage() {
   return (
     <div className="flex h-screen">
       
-      <div className="w-1/6">
-        <Sidebar />
-      </div>
-
-      
-      <div className="flex flex-col w-5/6">
-        <Header />
         <div className="p-6 bg-gray-100 flex-1 overflow-y-auto">
-          <h2 className="text-2xl font-bold mb-4">Notifications</h2>
+          <h2 className="text-2xl text-black font-bold mb-4">Notifications</h2>
 
           
           <div className="space-y-4">
@@ -70,6 +60,6 @@ export default function NotificationPage() {
           )}
         </div>
       </div>
-    </div>
+  
   );
 }
