@@ -1,7 +1,7 @@
-export default function Page(){
+export default function settings(){
     return <div>
         <div>
-            
+            settings
         </div>
     </div>
 }

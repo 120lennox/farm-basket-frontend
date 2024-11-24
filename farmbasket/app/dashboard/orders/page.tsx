@@ -1,4 +1,4 @@
-export default function Page(){
+export default function orders(){
     return <div>
         <div>
             
