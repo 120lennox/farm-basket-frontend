@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import Image from "chekOut/image";
 
 export default function Checkout() {
   const [rating, setRating] = useState(0);
@@ -13,15 +12,8 @@ export default function Checkout() {
   return (
     <div className="flex flex-col lg:flex-row justify-evenly items-center p-8 bg-gray-100 min-h-screen">
       <div className="flex justify-center items-center w-full lg:w-1/2 mb-8 lg:mb-0">
-        <div className="w-[300px] h-[300px] bg-gray-300 rounded-lg flex items-center justify-center">
-          <Image
-            src="/checkOut/water pump.jpg"
-            alt="Power Generator"
-            width={300}
-            height={300}
-            className="object-cover rounded-lg"
-          />
-        </div>
+        <div className="w-[300px] h-[300px] bg-gray-300 rounded-lg flex items-center justify-center"></div>
+        <h1>image here</h1>
       </div>
 
       <div className="bg-yellow-800 p-6 rounded-lg shadow-lg text-white w-full lg:w-1/2 max-w-lg">
