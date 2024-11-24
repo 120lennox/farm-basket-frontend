@@ -1,7 +1,7 @@
 export default function logout(){
     return <div>
         <div>
-            logout
+            messages logout
         </div>
     </div>
 }
