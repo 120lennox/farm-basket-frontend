@@ -2,69 +2,22 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import ForgotPassword from "../forgotPassword/page";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [visible, setVisible] = useState(false); // For ForgotPassword modal
   const router = useRouter();
 
-  function validateEmail(email) {
-    const emailRegex =
-      /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
-  }
+  const validateEmail = (email) =>
+    /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
 
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
-
-  //   setEmailError("");
-  //   setPasswordError("");
-
-  //   if (!validateEmail(email)) {
-  //     setEmailError("Please enter a valid email address.");
-  //     return;
-  //   }
-
-  //   if (password.length < 8) {
-  //     setPasswordError("Password must be at least 8 characters long.");
-  //     return;
-  //   }
-
-  //   try {
-  //     const res = await fetch("https://farm-basket3.onrender.com/auth/login", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ email, password }),
-  //     });
-
-  //     const data = await res.json();
-
-  //     if (!res.ok) {
-  //       if (data.message.includes("email")) {
-  //         setEmailError("Invalid email address.");
-  //       } else if (data.message.includes("password")) {
-  //         setPasswordError("Incorrect password.");
-  //       } else {
-  //         setEmailError("Login failed. Please check your credentials.");
-  //       }
-  //       return;
-  //     }
-
-  //     router.push("/"); // Redirect to landing page on successful login
-  //     setEmail("");
-  //     setPassword("");
-  //   } catch (error) {
-  //     setEmailError("The email you entered does not belong to any account.");
-  //   }
-  // }
-
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  
     setEmailError("");
     setPasswordError("");
   
@@ -81,12 +34,9 @@ export default function Login() {
     try {
       const res = await fetch("https://farm-basket3.onrender.com/auth/login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
-  
       const data = await res.json();
       console.log(data.message)
   
@@ -100,99 +50,94 @@ export default function Login() {
         }
         return;
       }
-  
-      // Store the token in sessionStorage
-      if (data.message) {
-        sessionStorage.setItem('message', data.message);
-        // You might also want to store user data if it's included in the response
-        if (data.user) {
-          sessionStorage.setItem('user', JSON.stringify(data.user));
-        }
-      }
-  
-      router.push("/"); // Redirect to landing page on successful login
+
+      if (data.token) localStorage.setItem("authToken", data.token);
+      router.push("/");
       setEmail("");
       setPassword("");
     } catch (error) {
-      setEmailError("The email you entered does not belong to any account.");
+      console.error("Error during login:", error);
+      setEmailError("Unable to log in. Please try again later.");
     }
-  }
+  };
+
+  const ErrorMessage = ({ message }) =>
+    message && <p className="text-red-500 text-xs mt-1">{message}</p>;
 
   return (
-    <div className="rounded-lg shadow-lg flex justify-center items-center h-screen">
-      <div className="bg-white h-[650px] w-[500px] border shadow-lg rounded-lg">
-        <header className="bg-gradient-to-r from-green-700 via-yellow-300 to-green-900 h-[300px] text-center text-white font-serif flex flex-col justify-center items-center p-6">
-          <h1 className="font-extrabold text-[30px]">Welcome to Farm Basket</h1>
-          <p className="mt-4 text-sm px-4">
-            Welcome to Farm Basket, the best place to buy and sell fresh farm
-            products. Join our community today and experience convenient,
-            high-quality farm trading.
+    <div className="min-h-screen flex justify-center items-center bg-gray-100">
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-md">
+        <header className="bg-gradient-to-r from-green-700 via-yellow-300 to-green-900 text-white text-center p-6 rounded-t-lg">
+          <h1 className="text-2xl font-bold">Welcome to Farm Basket</h1>
+          <p className="text-sm mt-2">
+            Buy and sell fresh farm products. Join our community today for
+            convenient, high-quality trading.
           </p>
-          <div className="mt-6">
-            <p className="text-xs">Don't have an account? Create one below.</p>
-            <div className="mt-3">
-              <Link
-                href="/authentification/signUp"
-                className="bg-green-900 text-white rounded-full px-4 py-2 hover:bg-green-700 focus:outline-none"
-              >
-                SIGN UP
-              </Link>
-            </div>
-          </div>
-        </header>
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col items-center gap-4 p-6"
-        >
-          <h1 className="text-center font-bold text-green-950 text-lg mt-2">
-            User Login
-          </h1>
-
-          <input
-            aria-label="Email Address"
-            className="text-white w-[350px] p-2 mt-3 border rounded-full bg-green-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-700"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your Email"
-            required
-          />
-          {emailError && <p className="text-red-600 text-xs">{emailError}</p>}
-
-          <input
-            aria-label="Password"
-            className="text-white w-[350px] p-2 mt-3 border rounded-full bg-green-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-green-700"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            required
-          />
-          {passwordError && (
-            <p className="text-red-500 text-xs">{passwordError}</p>
-          )}
-
-          <div className="flex justify-between w-[350px] text-xs mt-2">
-            <label className="flex items-center">
-              <input type="checkbox" className="mr-1" />
-              Remember me
-            </label>
+          <div className="mt-4">
+            <p className="text-xs">Don't have an account?</p>
             <Link
-              href="/authentification/forgotPass"
-              className="text-green-700 hover:underline"
+              href="/authentication/signUp"
+              className="bg-white text-green-900 px-4 py-2 rounded-full inline-block mt-2 hover:bg-gray-100"
             >
-              Forgot password?
+              SIGN UP
             </Link>
           </div>
-
+        </header>
+        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+          <h2 className="text-lg font-semibold text-gray-800 text-center">
+            User Login
+          </h2>
+          <div>
+            <input
+              aria-label="Email Address"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              className="w-full p-3 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-green-700"
+              required
+            />
+            <ErrorMessage message={emailError} />
+          </div>
+          <div>
+            <input
+              aria-label="Password"
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              className="w-full p-3 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-green-700"
+              required
+            />
+            <ErrorMessage message={passwordError} />
+          </div>
+          <div className="flex items-center justify-between text-sm">
+            <label className="flex items-center">
+              <input
+                type="checkbox"
+                className="mr-2"
+                checked={showPassword}
+                onChange={(e) => setShowPassword(e.target.checked)}
+              />
+              Show Password
+            </label>
+            <button
+              type="button"
+              className="text-green-700 hover:underline"
+              onClick={() => setVisible(true)}
+            >
+              Forgot Password?
+            </button>
+          </div>
           <button
             type="submit"
-            className="bg-green-800 text-white px-3 font-bold py-1 rounded-[5px] hover:bg-green-950"
+            className="w-full bg-green-700 text-white py-3 rounded-lg font-medium hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300"
           >
             Login
           </button>
         </form>
       </div>
+      <ForgotPassword isVisible={visible} onClose={() => setVisible(false)} />
     </div>
   );
 }
