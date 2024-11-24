@@ -1,5 +1,6 @@
-// pages/payment.js
-export default function Payment() {
+
+  // pages/payment.js
+  export default function Payment() {
     return (
       <div className="flex items-center  w-70 justify-center min-h-screen ">
         <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
@@ -66,3 +67,5 @@ export default function Payment() {
       </div>
     );
   }
+
+  
