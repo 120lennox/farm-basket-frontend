@@ -5,7 +5,7 @@ export default function Checkout() {
   const [rating, setRating] = useState(0);
   const [items, setItems] = useState(0);
 
-  const handleRating = (index) => {
+  const handleRating = (index: string) => {
     setRating(index + 1);
   };
 
