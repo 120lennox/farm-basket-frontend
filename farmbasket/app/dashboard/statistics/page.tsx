@@ -1,76 +1,75 @@
-import Header from "../components/header";
+/*import Header from "../components/header";
 import Sidebar from "../components/sidebar";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend, ResponsiveContainer } from "recharts";
+import { Bar } from "react-chartjs-2";
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Tooltip,
+    Legend,
+} from "chart.js";
+
+// Register the required Chart.js components
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 export default function Statistics() {
-    const number = 25;
+    // Define the chart data
+    const salesTrendsData = {
+        labels: ["January", "February", "March", "April", "May", "June"],
+        datasets: [
+            {
+                label: "Monthly Sales",
+                data: [5000, 7000, 8000, 6000, 9000, 10000],
+                backgroundColor: "rgba(136, 132, 216, 0.8)", // Bar color with transparency
+            },
+        ],
+    };
 
-    // Example reviews data
-    const reviews = [
-        { id: 1, product: "Tractor", rating: 4.5, comment: "Great quality and durable!" },
-        { id: 2, product: "Plough", rating: 4.0, comment: "Works well but a bit heavy." },
-        { id: 3, product: "Neem Oil", rating: 5.0, comment: "Highly effective and eco-friendly." },
-        { id: 4, product: "Corn", rating: 3.8, comment: "Fresh but slightly overpriced." },
-    ];
-
-    // Sales trends data for the graph
-    const salesTrendsData = [
-        { month: "January", sales: 5000 },
-        { month: "February", sales: 7000 },
-        { month: "March", sales: 8000 },
-        { month: "April", sales: 6000 },
-        { month: "May", sales: 9000 },
-        { month: "June", sales: 10000 },
-    ];
+    // Simplified chart options
+    const Options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: true, // Show legend
+                position: "top", // Position the legend
+            },
+            tooltip: {
+                enabled: true, // Enable tooltips on hover
+            },
+        },
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: "Months", // Label for X-axis
+                },
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: "Sales (in USD)", // Label for Y-axis
+                },
+                beginAtZero: true, // Start Y-axis at 0
+            },
+        },
+    };
 
     return (
         <div className="flex h-screen overflow-hidden">
-            {/* Sidebar */}
             <div className="w-1/6">
                 <Sidebar />
             </div>
-
-            {/* Main Content */}
             <div className="flex flex-col w-5/6">
                 <Header />
                 <div className="p-4 bg-gray-100 h-full overflow-y-auto">
                     <h2 className="text-2xl font-bold mb-4">Statistics</h2>
-
-                    {/* Sales Number */}
-                    <div className="mb-6">
-                        <h3 className="text-lg font-semibold">Total Sales:</h3>
-                        <p className="text-gray-700 text-xl">${number}</p>
-                    </div>
-
-                    {/* Sales Trends Graph */}
-                    <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-                        <h3 className="text-lg font-semibold mb-4">Sales Trends</h3>
-                        <ResponsiveContainer width="100%" height={300}>
-                            <LineChart data={salesTrendsData}>
-                                <CartesianGrid stroke="#ccc" />
-                                <XAxis dataKey="month" />
-                                <YAxis />
-                                <Legend />
-                                <Line type="monotone" dataKey="sales" stroke="#8884d8" strokeWidth={2} />
-                            </LineChart>
-                        </ResponsiveContainer>
-                    </div>
-
-                    {/* Customer Reviews */}
                     <div className="bg-white rounded-lg shadow-md p-6">
-                        <h3 className="text-lg font-semibold mb-4">Customer Reviews</h3>
-                        <div className="space-y-4">
-                            {reviews.map((review) => (
-                                <div key={review.id} className="p-4 border rounded-lg bg-gray-50">
-                                    <h4 className="font-semibold text-gray-800">{review.product}</h4>
-                                    <p className="text-sm text-gray-600">Rating: {review.rating} / 5</p>
-                                    <p className="text-gray-700">{review.comment}</p>
-                                </div>
-                            ))}
-                        </div>
+                        <Bar data={salesTrendsData} options={Options} />
                     </div>
                 </div>
             </div>
         </div>
     );
-}
+}*/
+
