@@ -50,6 +50,7 @@ export default function ForgotPassword({
       }
     } catch (err) {
       setError("Failed to send the request. Please check your connection.");
+      console.error('server error', err)
     }
   };
 
