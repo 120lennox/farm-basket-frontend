@@ -34,6 +34,7 @@ export default function RootLayout({
 {
   const pathname = usePathname()
   const isDashboardRouter = pathname.startsWith('/dashboard')
+
 return (
     <html lang="en">
       <body
