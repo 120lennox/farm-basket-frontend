@@ -1,4 +1,4 @@
-import { PageProps } from "@/.next/types/app/layout";
+import { PageProps } from "@/.next/types/app/page";
 import { fetchShopid } from "@/app/lib/data";
 import Image from "next/image";
 import Link from "next/link";

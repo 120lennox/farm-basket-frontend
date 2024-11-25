@@ -1,7 +1,5 @@
 import React from "react";
-import Footer from "../components/landing/footer";
 import Sidebar from "./components/sidebar";
-import Link from "next/link";
 
 // dashboard layout
 export default function DashboardLayout({
