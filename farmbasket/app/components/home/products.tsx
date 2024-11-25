@@ -1,5 +1,5 @@
 import { headers } from 'next/headers';
-import icons from 'react-icons'
+
 import { text } from 'stream/consumers';
 
 const searchingBar=()=>{
