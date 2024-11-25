@@ -20,17 +20,17 @@ export default function Login() {
     e.preventDefault();
     setEmailError("");
     setPasswordError("");
-  
+
     if (!validateEmail(email)) {
       setEmailError("Please enter a valid email address.");
       return;
     }
-  
+
     if (password.length < 8) {
       setPasswordError("Password must be at least 8 characters long.");
       return;
     }
-  
+
     try {
       const res = await fetch("https://farm-basket3.onrender.com/auth/login", {
         method: "POST",
@@ -38,8 +38,7 @@ export default function Login() {
         body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
-      console.log(data.message)
-  
+
       if (!res.ok) {
         if (data.message.includes("email")) {
           setEmailError("Invalid email address.");
@@ -51,7 +50,8 @@ export default function Login() {
         return;
       }
 
-      if (data.token) localStorage.setItem("authToken", data.token);
+      if (data.access_token)
+        localStorage.setItem("authToken", data.access_token);
       router.push("/");
       setEmail("");
       setPassword("");
