@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function SignUp() {
   const router = useRouter();
@@ -104,7 +105,7 @@ export default function SignUp() {
     <div className="flex flex-col justify-center items-center min-h-screen p-4 ">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6 space-y-6">
         <div className="flex justify-center">
-          <img
+          <Image
             src="/Log.png"
             alt="Farm Basket Logo"
             className="w-25 h-23 object-contain  "

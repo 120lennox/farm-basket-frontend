@@ -24,7 +24,7 @@ export default function Hero() {
           </div>
           <div className="mt-28 mb-5">
             <div className="text-4xl text-CustomGreen-600">
-              What's Trending?
+              Whats Trending?
             </div>
           </div>
           <div className="flex justify-between items-center mt-14">

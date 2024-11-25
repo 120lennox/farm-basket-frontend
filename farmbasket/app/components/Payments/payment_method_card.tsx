@@ -1,3 +1,4 @@
+import Image from "next/image";
 
   // pages/payment.js
   export default function Payment() {
@@ -15,7 +16,7 @@
             {/* Airtel Option */}
             <label className="flex items-center justify-between border rounded-2xl px-4 py-3 cursor-pointer hover:border-green-500 transition">
               <div className="flex items-center">
-                <img
+                <Image
                   src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Airtel_Logo_2010.svg"
                   alt="AIRTEL"
                   className="w-8 h-8 mr-3"
@@ -31,7 +32,7 @@
             {/* TNM Mpamba Option */}
             <label className="flex items-center justify-between border rounded-2xl px-4 py-3 cursor-pointer hover:border-green-500 transition">
               <div className="flex items-center">
-                <img
+                <Image
                   src="https://upload.wikimedia.org/wikipedia/commons/c/c1/TNM_Logo.svg"
                   alt="TNM"
                   className="w-8 h-8 mr-3"
@@ -47,7 +48,7 @@
             {/* Visa Option */}
             <label className="flex items-center justify-between border rounded-2xl px-4 py-3 cursor-pointer hover:border-green-500 transition">
               <div className="flex items-center">
-                <img
+                <Image
                   src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.svg"
                   alt="VISA"
                   className="w-8 h-8 mr-3"

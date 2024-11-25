@@ -10,12 +10,12 @@ export default function ForgotPassword({
   isVisible = false, 
   onClose = () => {} 
 }: ForgotPasswordProps) {
-   if (!isVisible) return null;
 
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
+   if (!isVisible) return null;
   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
