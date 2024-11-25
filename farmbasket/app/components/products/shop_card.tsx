@@ -32,28 +32,6 @@ const ShopCard = async()=>{
                     </div>
                 ))}
             </div>
-
-            {/* {shops?.map((shop)=>{
-                <div key={shop.id} className="">
-                    <div>
-                        test here
-                        <div>
-                            <Image src="https://i.pinimg.com/564x/b1/38/63/b1386383cb433a04acaee2b9420961e1.jpg"
-                                    alt="Water pump"
-                                    width={200}
-                                    height={400}
-                            />
-                        </div>
-                        <div>
-                            <div>{shop.name}</div>
-                            <div>{shop.description}</div>
-                            <div>
-                                <Link href="/">visit shop</Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            })} */}
         </div>
     </div>
 }
