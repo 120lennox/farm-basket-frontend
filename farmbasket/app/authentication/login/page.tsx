@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import ForgotPassword from "../forgotPassword/page";
+import ForgotPassword from "../forgotPassword/forogotPassword";
 
 export default function Login() {
   const [email, setEmail] = useState("");
