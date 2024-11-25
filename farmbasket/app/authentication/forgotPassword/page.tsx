@@ -1,14 +1,19 @@
 'use client'
 import { useState } from "react";
 
-export default function ForgotPassword({ isVisible, onClose }) {
+interface ForgotPasswordProps {
+  isVisible?: boolean,
+  onClose?: ()=> void;
+}
+
+export default function ForgotPassword({ isVisible, onClose }: ForgotPasswordProps) {
   if (!isVisible) return null;
 
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
@@ -32,9 +37,8 @@ export default function ForgotPassword({ isVisible, onClose }) {
       );
 
       if (response.ok) {
-        setSuccessMessage(
-          "A password reset link has been sent to your email address."
-        );
+        const successData = await response.json()
+        setSuccessMessage(successData.message);
       } else {
         const errorData = await response.json();
         setError(

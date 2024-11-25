@@ -20,11 +20,11 @@ export default function SignUp() {
   const [locationError, setLocationError] = useState("");
   const [serverMessage, setServerMessage] = useState("");
 
-  function validateEmail(email) {
+  function validateEmail(email:string) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     setUserNameError("");
@@ -117,7 +117,7 @@ export default function SignUp() {
         <h1 className="text-gray-800 text-2xl font-extrabold text-center">
           Create an Account
         </h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 text-white">
           <input
             aria-label="Username"
             onChange={(e) => setUserName(e.target.value)}

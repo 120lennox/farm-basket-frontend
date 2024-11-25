@@ -13,10 +13,13 @@ export default function Login() {
   const [visible, setVisible] = useState(false); // For ForgotPassword modal
   const router = useRouter();
 
-  const validateEmail = (email) =>
+  interface ErrorMessageProps { 
+    message?: string; 
+  }  
+  const validateEmail = (email: string) =>
     /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setEmailError("");
     setPasswordError("");
@@ -61,8 +64,8 @@ export default function Login() {
     }
   };
 
-  const ErrorMessage = ({ message }) =>
-    message && <p className="text-red-500 text-xs mt-1">{message}</p>;
+  const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) =>
+  message ? <p className="text-red-500 text-xs mt-1">{message}</p> : null ;
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
