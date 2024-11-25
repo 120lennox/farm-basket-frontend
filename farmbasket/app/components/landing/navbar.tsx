@@ -78,10 +78,16 @@ export default function Navbar() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleCreateShop = (shopData) => {
+  interface ShopData {
+    name: string;
+    address: string;
+    // Add other relevant properties
+    key: string;  // Optional: allows additional properties
+  }
+  
+  const handleCreateShop = (shopData: ShopData) => {
     // shop creation logic
     console.log('Shop created:', shopData);
-
   };
 
   // useEffect(() => {
