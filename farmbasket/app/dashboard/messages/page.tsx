@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { io, Socket } from "socket.io-client";
 
 export default function Messages() {
   type Message = {
@@ -10,9 +11,9 @@ export default function Messages() {
   type Conversation = {
     id: string;
     name: string;
-    profilePicture: string | null; // Placeholder for profile picture (null for now)
-    isOnline: boolean; // Online status
-    lastSeen: string; // Last seen time
+    profilePicture: string | null;
+    isOnline: boolean;
+    lastSeen: string;
     messages: Message[];
   };
 
@@ -28,75 +29,106 @@ export default function Messages() {
         { sender: "You", content: "I'm good, thanks! How about you?" },
       ],
     },
-    {
-      id: "2",
-      name: "Bob",
-      profilePicture: null,
-      isOnline: false,
-      lastSeen: "Yesterday 19:30",
-      messages: [
-        { sender: "", content: "Are we still on for today?" },
-        { sender: "You", content: "Yes, see you at 5!" },
-      ],
-    },
-    {
-      id: "3",
-      name: "Lisbeth",
-      profilePicture: null,
-      isOnline: false,
-      lastSeen: "Today 09:15",
-      messages: [
-        { sender: "", content: "Do you still have the tractor?" },
-        { sender: "You", content: "Yes, I do." },
-      ],
-    },
+    // Add more conversations here...
   ]);
 
   const [currentConversationId, setCurrentConversationId] = useState<string | null>(null);
   const [messageInput, setMessageInput] = useState("");
+  const [socket, setSocket] = useState<Socket | null>(null);
+
+  // Initialize Socket.IO
+  useEffect(() => {
+    const socketInstance = io("http://farm-basket3.onrender.com", {
+      reconnectionAttempts: 5,
+      transports: ["websocket"],
+    });
+
+    socketInstance.on("connect", () => {
+      console.log("Connected to Socket.IO server with ID:", socketInstance.id);
+    });
+
+    socketInstance.on("disconnect", (reason) => {
+      console.warn("Disconnected from Socket.IO server. Reason:", reason);
+    });
+
+    socketInstance.on("error", (error) => {
+      console.error("Socket.IO error:", error);
+    });
+
+    socketInstance.on("newMessage", (data) => {
+      console.log("New message received:", data);
+
+      // Update the conversation with the new message
+      setConversations((prevConversations) =>
+        prevConversations.map((conversation) =>
+          conversation.id === data.conversationId
+            ? {
+                ...conversation,
+                messages: [...conversation.messages, data.message],
+              }
+            : conversation
+        )
+      );
+    });
+
+    setSocket(socketInstance);
+
+    return () => {
+      socketInstance.disconnect();
+    };
+  }, []);
+
+  const sendMessage = () => {
+    if (!messageInput.trim()) {
+      console.error("Message input is empty. Please type a message.");
+      return;
+    }
+
+    if (!currentConversationId) {
+      console.error("No conversation selected. Please select a conversation.");
+      return;
+    }
+
+    if (!socket) {
+      console.error("Socket.IO connection is not initialized.");
+      return;
+    }
+
+    const newMessage = {
+      sender: "You",
+      content: messageInput.trim(),
+    };
+
+    const payload = {
+      conversationId: currentConversationId,
+      message: newMessage,
+    };
+
+    console.log("Sending message payload:", payload);
+
+    socket.emit("sendMessage", payload, (response: { status: string; error?: string }) => {
+      if (response.status === "ok") {
+        console.log("Message sent successfully.");
+        // Optimistically update the UI
+        setConversations((prevConversations) =>
+          prevConversations.map((conversation) =>
+            conversation.id === currentConversationId
+              ? {
+                  ...conversation,
+                  messages: [...conversation.messages, newMessage],
+                }
+              : conversation
+          )
+        );
+        setMessageInput("");
+      } else {
+        console.error("Error sending message:", response.error);
+      }
+    });
+  };
 
   const handleConversationClick = (conversationId: string) => {
     setCurrentConversationId(conversationId);
-  };
-
-  const sendMessage = async () => {
-    if (!messageInput.trim() || !currentConversationId) return;
-
-    const newMessage: Message = {
-      sender: "You",
-      content: messageInput,
-    };
-
-    setConversations((prevConversations) =>
-      prevConversations.map((conversation) =>
-        conversation.id === currentConversationId
-          ? {
-              ...conversation,
-              messages: [...conversation.messages, newMessage],
-            }
-          : conversation
-      )
-    );
-
-    setMessageInput("");
-
-    try {
-      const response = await fetch("https://farm-basket3.onrender.com/messages/send", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          messages: newMessage,
-        }),
-      });
-
-      if (!response.ok) {
-        console.error("Failed to send message to the server");
-      }
-    } catch (error) {
-      console.error("Error sending message:", error);
-    }
   };
 
   const selectedConversation = conversations.find(
@@ -117,7 +149,6 @@ export default function Messages() {
               }`}
               onClick={() => handleConversationClick(conversation.id)}
             >
-              {/* Profile Picture Placeholder */}
               <div className="w-8 h-8 rounded-full bg-gray-400"></div>
               <span className="text-lg">{conversation.name}</span>
             </li>
@@ -135,7 +166,9 @@ export default function Messages() {
               <div>
                 <h3 className="font-bold text-lg">{selectedConversation.name}</h3>
                 <p className="text-sm text-gray-500">
-                  {selectedConversation.isOnline ? "Active" : `Last seen ${selectedConversation.lastSeen}`}
+                  {selectedConversation.isOnline
+                    ? "Active"
+                    : `Last seen ${selectedConversation.lastSeen}`}
                 </p>
               </div>
             </div>
@@ -186,4 +219,3 @@ export default function Messages() {
     </div>
   );
 }
-

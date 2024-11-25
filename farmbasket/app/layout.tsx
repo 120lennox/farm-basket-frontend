@@ -1,6 +1,5 @@
 'use client'
 
-import type { Metadata } from "next";
 // import localFont from "next/font/local";
 // // app/layout.tsx
 // import '@fontsource/inter/variable.css'
@@ -32,15 +31,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) 
 {
-  const pathname = usePathname()
-  const isDashboardRouter = pathname.startsWith('/dashboard')
+  const pathname = usePathname();
+  const isDashboardRouter = pathname ?  pathname.startsWith('/dashboard') : false;
 return (
+  
     <html lang="en">
+      
       <body
         /**className={`${geistSans.variable} ${geistMono.variable} antialiased`}**/
-        className="font-Poppins   dark:bg-yellow-50 dark:text-black"
+        className="font-Poppins dark:bg-yellow-50 dark:text-black"
       >
-
         <div>
           <div className="mx-8">
             { !isDashboardRouter && <Navbar />}
@@ -48,6 +48,7 @@ return (
           {children}
         </div>
       </body>
+  
     </html>
   );
 }
