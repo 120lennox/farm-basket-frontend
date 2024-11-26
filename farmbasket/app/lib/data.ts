@@ -1,10 +1,6 @@
 // all data fetches here
 
 // Define interfaces for your data types
-interface Shop {
-    id: string;
-    
-  }
   
   interface User {
     id: string;
@@ -17,21 +13,29 @@ interface Shop {
   }
   
   // fetching shop card data
-  export const fetchShopCardData = async (): Promise<Shop[]> => {
-    try {
-      console.log("fetching started ...");
-      
-      // fetching API
-      const result = await fetch("https://farm-basket3.onrender.com/shop/all");
-      const data: Shop[] = await result.json();
-      
-      console.log("API data", data);
-      return data;
-    } catch (error) {
-      console.error('server error:', error);
-      throw new Error('Failed to fetch shop card data');
-    }
+ // In your data.ts file
+export interface Shop {
+  shopid: string;
+  image: string;
+  name: string;
+  description: string;
+}
+
+export const fetchShopCardData = async (): Promise<Shop[]> => {
+  try {
+    console.log("fetching started ...");
+    
+    // fetching API
+    const result = await fetch("https://farm-basket3.onrender.com/shop/all");
+    const data: Shop[] = await result.json();
+    
+    console.log("API data", data);
+    return data;
+  } catch (error) {
+    console.error('server error:', error);
+    throw new Error('Failed to fetch shop card data');
   }
+}
   
   // fetch all users
   export const fetchUsers = async (): Promise<User[]> => {

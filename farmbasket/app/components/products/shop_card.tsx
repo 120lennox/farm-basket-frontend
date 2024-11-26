@@ -2,7 +2,7 @@ import { fetchShopCardData } from "@/app/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 
-// Define the Shop interface based on the expected data structure
+// Define the Shop interface
 interface Shop {
   shopid: string;
   image: string;
@@ -11,7 +11,8 @@ interface Shop {
 }
 
 const ShopCard = async () => {
-  const shops: Shop[] = await fetchShopCardData();
+  // Explicitly type the function return
+  const shops: Shop[] = await fetchShopCardData() as Shop[];
   console.log(shops);
 
   return (
@@ -19,11 +20,11 @@ const ShopCard = async () => {
       {shops.map((shop: Shop) => (
         <div key={shop.shopid} className="card bg-base-100 shadow-xl">
           <figure>
-            <Image 
-              src={shop.image} 
-              alt={shop.name} 
-              width={300} 
-              height={200} 
+            <Image
+              src={shop.image}
+              alt={shop.name}
+              width={300}
+              height={200}
               className="w-full h-48 object-cover"
             />
           </figure>
