@@ -30,8 +30,10 @@ export default function Navbar() {
   useEffect(() => {
     // Check authentication status when component mounts
     const checkAuth = () => {
-      const message = sessionStorage.getItem('message');
-      if (message === "succesfully logged in") {  // Only authenticate if message matches
+      const token = localStorage.getItem("authToken");
+
+
+      if (token !== null) {  // Only if token is something
         setIsAuthenticated(true);
         console.log("Auth Status: Logged in");
       } else {
@@ -57,7 +59,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     // Remove all auth-related session data
-    sessionStorage.removeItem('message');
+    sessionStorage.removeItem('authToekn');
     sessionStorage.removeItem('user');
     setIsAuthenticated(false);
     router.push('/authentication/login');

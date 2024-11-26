@@ -41,7 +41,8 @@ export default function Login() {
         body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
-      console.log(data.message)
+
+      console.log(data.access_token)
   
       if (!res.ok) {
         if (data.message.includes("email")) {
@@ -54,7 +55,7 @@ export default function Login() {
         return;
       }
 
-      if (data.token) localStorage.setItem("authToken", data.token);
+      if (data.access_token) localStorage.setItem("authToken", data.access_token);
       router.push("/");
       setEmail("");
       setPassword("");
