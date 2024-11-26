@@ -1,7 +1,7 @@
 export default function loading(){
     return <div>
-        <div className="mx-8 mt-20 text-[28px]">
-            Loading ... load
+        <div className="flex justify-center items-center mx-auto h-screen">
+            <span className="loading loading-spinner text-success"></span>
         </div>
     </div>
 }
