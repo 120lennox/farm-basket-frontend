@@ -45,6 +45,8 @@ const InvetoryProvider = ({ children }: { children: React.ReactNode }) => {
     setInvetory((prevInvetory) => [...prevInvetory, newProduct]);
   };
 
+
+
   return (
     <InvetoryContext.Provider value={{ invetory, updateProduct, deleteProduct, addProduct }}>
       {children}
@@ -74,6 +76,7 @@ const InvetoryPage = () => {
     setEditingProduct(null);
     setIsAddingProduct(false);
   };
+
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -163,16 +166,37 @@ const ProductModal = ({
       [name]: name === "quantity" || name === "price" ? +value : value,
     }));
   };
+  const [error,setError] = useState('') 
+  const handlePostProduct = async (e: React.FormEvent<HTMLFormElement>) => { 
+    e.preventDefault(); 
+    console.log('posting products'); 
+    try { 
+      const response = await fetch('https://farm-basket3.onrender.com/products/create', 
+      { 
+        method: 'POST', 
+        headers: { 'Content-Type': 'application/json' }, 
+        body: JSON.stringify({ 
+          name: formData.name, type: formData.category, price: formData.price, quantity: formData.quantity 
+        }) 
+      }); 
+      const data = await response.json(); 
+      console.log('success'); 
+      if (!response.ok) { 
+        setError(`Error fetching data: ${data.message}`); 
+      } 
+    } catch (error) { 
+      console.log('product not saved'); 
+      setError(`Unable to fetch products ${error}`); 
+    } 
+    
+  };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
       <div className="bg-white rounded-lg p-6 w-1/3">
         <h2 className="text-lg text-black font-bold mb-4">{product ? "Edit Product" : "Add Product"}</h2>
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            onSave(formData);
-          }}
+          onSubmit={handlePostProduct}
         >
           <div className="mb-4 text-black">
             <label className="block text-sm text-black font-medium">Name</label>
