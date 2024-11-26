@@ -4,10 +4,14 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import CreateShopModal from "../modal_components/create_shop";
+import axios from 'axios'
+
 
 export default function Navbar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -20,11 +24,35 @@ export default function Navbar() {
     key?: string;
   }
   
-  const handleCreateShop = (shopData: ShopData) => {
-    // shop creation logic
-    console.log('Shop created:', shopData);
-    // You might want to add more logic here, like API calls
-    setIsModalOpen(false);
+  const handleCreateShop = async (shopData: ShopData) => {
+    // reset previous errors 
+    setError(null)
+    setIsLoading(true);
+
+    // send data
+
+    try{
+      const response = await axios.post('https://farm-basket3.onrender.com/shop/create', shopData, {
+        headers: {
+          'conntent-Type': 'application/json',
+        }
+      });
+
+      console.log("Shop Created", shopData)
+      setIsModalOpen(false)
+    }catch(error){
+      if (axios.isAxiosError(error)){
+        const errorMessage = error.response?.data?.message || 'Failed to create shop';
+        setError(errorMessage);
+        console.error('Shop creation error:', errorMessage);
+      }else{
+        setError('An unexpected error occurred');
+        console.error('Unexpected error:', error);
+      }
+    }finally{
+      setIsLoading(false)
+    }
+   
   };
 
   useEffect(() => {
