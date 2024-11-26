@@ -8,8 +8,7 @@ export default function ResetPassword() {
   const [showPassword, setShowPassword] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    
+    e.preventDefault();    
   }
 
   return (
