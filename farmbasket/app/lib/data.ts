@@ -40,7 +40,7 @@ export const fetchUsers = async()=> {
 }
 
 // fetch user by id 
-export const fetchUserById = async (id) => {
+export const fetchUserById = async (id:number) => {
     try{
         console.log("fetching user by id...")
         const result = await fetch(`https://farm-basket3.onrender.com/users/${id}`)
@@ -56,7 +56,7 @@ export const fetchUserById = async (id) => {
     }
 }
 
-export const fetchShopid = async(id)=>{
+export const fetchShopid = async(id:number)=>{
     try{
         console.log(id)
         const result = await fetch(`https://farm-basket3.onrender.com/shop/${id}`)
@@ -70,6 +70,7 @@ export const fetchShopid = async(id)=>{
         throw new Error('Failed to fetch shop')
     }
 }
+
 
 export const fetchProduct = async () =>{
     try{
@@ -86,7 +87,18 @@ export const fetchProduct = async () =>{
     }
 }
 
-export const fetchProductid = async(id)=>{
+export const fetchNotifications = async () => {
+    try {
+        const result = await fetch('https://farm-basket3.onrender.com/notifications/user')
+        const data = await result.json()
+
+        return data
+    }catch (error) {
+        throw new Error(`Failed to fetch Notification: ${error}`)
+    }
+}
+
+export const fetchProductid = async(id:number)=>{
     try{
         console.log(id)
         const result = await fetch(`https://farm-basket3.onrender.com/Product/${id}`)
