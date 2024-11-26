@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import ForgotPassword from "../forgotPassword/page";
+import ForgotPassword from "../forgotPassword/forogotPassword";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -77,7 +77,7 @@ export default function Login() {
             convenient, high-quality trading.
           </p>
           <div className="mt-4">
-            <p className="text-xs">Don't have an account?</p>
+            <p className="text-xs">Dont have an account?</p>
             <Link
               href="/authentication/signUp"
               className="bg-white text-green-900 px-4 py-2 rounded-full inline-block mt-2 hover:bg-gray-100"
