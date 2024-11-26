@@ -97,7 +97,7 @@ const InvetoryPage = () => {
                 <div className="absolute top-2 right-2">
                   <div className="relative group">
                     <button className="text-gray-500 hover:text-black">☰</button>
-                    <div className="absolute right-0 bg-white border rounded shadow-md hidden group-hover:block">
+                    <div className="absolute right-0 bg-white border  rounded shadow-md hidden group-hover:block">
                       <button
                         onClick={() => setEditingProduct(product)}
                         className="block px-4 py-2 text-sm text-blue-500 hover:bg-gray-100 w-full text-left"
@@ -174,7 +174,7 @@ const ProductModal = ({
             onSave(formData);
           }}
         >
-          <div className="mb-4">
+          <div className="mb-4 text-black">
             <label className="block text-sm text-black font-medium">Name</label>
             <input
               type="text"
@@ -185,7 +185,7 @@ const ProductModal = ({
               required
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 text-black">
             <label className="block text-sm text-black font-medium">Category</label>
             <input
               type="text"
@@ -196,7 +196,7 @@ const ProductModal = ({
               required
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 text-black">
             <label className="block text-sm text-black font-medium">Quantity</label>
             <input
               type="number"
@@ -207,7 +207,7 @@ const ProductModal = ({
               required
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 text-black">
             <label className="block text-sm text-black font-medium">Price</label>
             <input
               type="number"
@@ -218,7 +218,7 @@ const ProductModal = ({
               required
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 text-black">
             <label className="block text-sm text-black font-medium">Image</label>
             <input
               type="file"
