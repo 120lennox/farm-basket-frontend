@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useState } from "react";
 
 interface ForgotPasswordProps {
@@ -6,17 +6,16 @@ interface ForgotPasswordProps {
   onClose?: () => void;
 }
 
-export default function ForgotPassword({ 
-  isVisible = false, 
-  onClose = () => {} 
+export default function ForgotPassword({
+  isVisible = false,
+  onClose = () => {},
 }: ForgotPasswordProps) {
-
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-   if (!isVisible) return null;
-  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+  if (!isVisible) return null;
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
@@ -40,7 +39,7 @@ export default function ForgotPassword({
       );
 
       if (response.ok) {
-        const successData = await response.json()
+        const successData = await response.json();
         setSuccessMessage(successData.message);
       } else {
         const errorData = await response.json();
@@ -50,7 +49,7 @@ export default function ForgotPassword({
       }
     } catch (err) {
       setError("Failed to send the request. Please check your connection.");
-      console.error('server error', err)
+      console.error("server error", err);
     }
   };
 
@@ -70,7 +69,7 @@ export default function ForgotPassword({
             to the provided email.
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            <label htmlFor="email" className="text-sm font-medium">
+            <label htmlFor="email" className="text-sm  font-medium">
               Email Address
             </label>
             <input
@@ -79,7 +78,7 @@ export default function ForgotPassword({
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="border bg-white border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
             />
             {error && <p className="text-red-500 text-sm">{error}</p>}
             {successMessage && (
