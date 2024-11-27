@@ -75,8 +75,10 @@ const InventoryPage = () => {
   useEffect(() => {
     const fetchData = async (shopId: number) => {
       try {
-        const result = await fetchShopProducts(shopId); // Replace with your API call
-        result.forEach((product: Product) => addProduct(product));
+        const result = await fetchShopProducts(shopId);
+        
+        result.forEach((product: Product) => addProduct(product))
+
       } catch (err) {
         setError(`Error fetching shop products: ${err}`);
       }
@@ -101,7 +103,7 @@ const InventoryPage = () => {
         <h2 className="text-2xl text-black font-bold mb-4">Product Management</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {inventory.map((product) => (
-            <div key={product.id} className="relative bg-white border rounded-lg p-4">
+            <div key={product.id || `product-${""}`} className="relative bg-white border rounded-lg p-4">
               {/* Product Display */}
               <div>
                 <img
@@ -178,6 +180,8 @@ const ProductModal = ({
   );
   const [error, setError] = useState("");
 
+  const categories = ["Farm machinery", "Pesticides", "Herbicides", "Poultry", "Farm Produce"];
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -218,8 +222,8 @@ const ProductModal = ({
           {product ? "Edit Product" : "Add Product"}
         </h2>
         <form onSubmit={handleSubmit}>
-          {["name", "category", "quantity", "price"].map((field) => (
-            <div className="mb-4" key={field}>
+          {["name","quantity", "price"].map((field) => (
+            <div className="mb-4 text-black" key={field}>
               <label className="block text-sm font-medium text-black capitalize">{field}</label>
               <input
                 type={field === "quantity" || field === "price" ? "number" : "text"}
@@ -231,6 +235,25 @@ const ProductModal = ({
               />
             </div>
           ))}
+          <div className="mb-4 text-black">
+            <label className="block text-sm font-medium text-black">Category</label>
+            <select
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              className="w-full border rounded p-2"
+              required
+            >
+              <option value="" disabled>
+                Select a category
+              </option>
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
           <div className="mb-4 text-black">
             <label className="block text-sm font-medium text-black">Image</label>
             <input

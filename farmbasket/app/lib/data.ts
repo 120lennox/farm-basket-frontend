@@ -21,6 +21,17 @@ export const fetchShopCardData = async () => {
         throw new Error('Failed to fetch shop card data')
     }
 }
+//fetching shop products
+export const fetchShopProducts = async (shopid:number)=>{
+    try {
+        const result = await fetch(`https://farm-basket3.onrender.com/${shopid}/products`)
+        const data = await result.json()
+
+        return data
+    }catch(error){
+        throw new Error('failed to fetch shop products')
+    }
+}
 
 // fetch all users 
 export const fetchUsers = async()=> {
@@ -83,6 +94,21 @@ export const fetchProduct = async () =>{
     } catch(error){
         console.error('server error:', error)
         throw new Error('Failed to fetch products')
+    }
+}
+
+export const fetchNotification = async () =>{
+    try{
+        console .log("fetching started...")
+        const result = await fetch ('https://farm-basket3.onrender.com/notification')
+        const data = await result.json()
+
+        console.log("API data", data)
+
+        return data
+    } catch(error){
+        console.error('server error:', error)
+        throw new Error('Failed to fetch notification')
     }
 }
 

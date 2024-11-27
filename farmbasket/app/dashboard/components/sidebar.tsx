@@ -3,14 +3,18 @@
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 import NavLink from "./navLink"
-
+import { fetchShopid, fetchUserById } from "@/app/lib/data"
+import { PageProps } from "@/.next/types/app/layout"
 
 export default function Sidebar(){
-    const pathname = usePathname()
+// const Sidebar = async({params}: PageProps)=>{
+//     const {id} = await params
+//     const shop = await fetchShopid(id)
+//     const pathname = usePathname()
     return <div>
         <div className="mt-10 flex flex-col space-y-10">
             <div className="font-bold text-[30px]">
-                Farm Basket
+               Farm basket
             </div>
             <div>
                 <input type="text" className="bg-customBlue-800 px-8 py-2 border-none ring-1 focus:ring-CustomGreen-500 focus:outline-none rounded-full" />
@@ -42,3 +46,5 @@ export default function Sidebar(){
         </div>
     </div>
 }
+
+// export default Sidebar;
