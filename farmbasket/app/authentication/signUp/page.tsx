@@ -21,7 +21,7 @@ export default function SignUp() {
   const [locationError, setLocationError] = useState("");
   const [serverMessage, setServerMessage] = useState("");
 
-  function validateEmail(email:string) {
+  function validateEmail(email: string) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
@@ -108,7 +108,9 @@ export default function SignUp() {
           <Image
             src="/Log.png"
             alt="Farm Basket Logo"
-            className="w-25 h-23 object-contain  "
+            width={100}
+            height={50}
+            className="object-contain  "
           />
         </div>
         <p className="text-gray-600 text-center">
