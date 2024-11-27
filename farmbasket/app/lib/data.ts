@@ -3,14 +3,14 @@
 // Define interfaces for your data types
   
   interface User {
-    id: string;
-    
+    id: string; 
   }
   
   interface Product {
     id: string;
     
   }
+
   
   // fetching shop card data
  // In your data.ts file
@@ -62,6 +62,19 @@ export const fetchShopCardData = async (): Promise<Shop[]> => {
   } catch (error) {
     console.error('Server error:', error);
     throw new Error('Failed to fetch shop card data..');
+  }
+}
+
+export const fetchShopProducts = async(shopid: string)=>{
+  try {
+    const result = await fetch(`https://farm-basket3.onrender.com/products/${shopid}/products`)
+    const data = await result.json()
+
+    console.log("product", data)
+    return data
+  }catch(error){
+    console.error('Server error:', error);
+    throw new Error('Failed to fetch shop products..')
   }
 }
   

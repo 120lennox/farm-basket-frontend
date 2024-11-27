@@ -3,16 +3,18 @@ import Sidebar from "./components/sidebar";
 
 // dashboard layout
 export default function DashboardLayout({
-    children
+    children,
+    params
 }: {
     children: React.ReactNode;
+    params: {id: string}
 }){
     return (
         <div className="min-h-[120vh] text-white bg-gradient-to-b from-customBlue-850 via-customBlue-800 to-customBlue-900 relative">
           <div className="mx-8">
             <div className="absolute left-8 top-0 h-full">
                 <div className="flex flex-col">
-                  <Sidebar />
+                  <Sidebar params={params} />
                 </div>
             </div>
             <div className="absolute left-[330px] top-6">
