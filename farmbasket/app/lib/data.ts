@@ -65,7 +65,7 @@ export const fetchShopCardData = async (): Promise<Shop[]> => {
   }
 }
 
-export const fetchShopProducts = async(shopid: string)=>{
+export const fetchShopProducts = async(shopid: number)=>{
   try {
     const result = await fetch(`https://farm-basket3.onrender.com/products/${shopid}/products`)
     const data = await result.json()
