@@ -1,7 +1,15 @@
-import { PageProps } from "@/.next/types/app/layout";
+import { PageProps } from "@/.next/types/app/page";
 import { fetchShopid } from "@/app/lib/data";
 import Image from "next/image";
 import Link from "next/link";
+
+// Define the Shop interface to match the structure of your API response
+export interface Shop {
+    shopid: string;
+    name: string;
+    description: string;
+    // Add any other properties that might exist in your shop object
+  }
 
 const shopStore = async({params}: PageProps)=>{
     const {id} = await params

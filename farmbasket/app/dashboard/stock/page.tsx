@@ -2,6 +2,7 @@
 import React, { useState, createContext, useContext } from "react";
 import Header from "../components/header";
 import Sidebar from "../components/sidebar";
+import Image from "next/image";
 
 // Product type definition
 interface Product {
@@ -94,7 +95,7 @@ const StockPage = () => {
               <div key={product.id} className="relative bg-white border rounded-lg p-4">
                 {/* Product Display */}
                 <div>
-                  <img src={product.image} alt={product.name} className="w-20 h-20 object-cover rounded-md mb-2" />
+                  <Image src={product.image} alt={product.name} className="w-20 h-20 object-cover rounded-md mb-2" />
                   <h4 className="text-lg font-semibold">{product.name}</h4>
                   <p className="text-sm text-gray-600">Category: {product.category}</p>
                   <p className="text-sm text-gray-600">Quantity: {product.quantity}</p>

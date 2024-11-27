@@ -1,12 +1,9 @@
 'use client'
 
-import { usePathname } from "next/navigation"
 import Link from "next/link"
-import NavLink from "./navLink"
 
 
 export default function Sidebar(){
-    const pathname = usePathname()
     return <div>
         <div className="mt-10 flex flex-col space-y-10">
             <div className="font-bold text-[30px]">
