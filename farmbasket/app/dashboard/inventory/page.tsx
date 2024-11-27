@@ -73,6 +73,7 @@ const InventoryPage = () => {
 
   // Fetch products on mount
   useEffect(() => {
+    
     const fetchData = async (shopId: number) => {
       try {
         const result = await fetchShopProducts(shopId); // Replace with your API call
@@ -188,8 +189,6 @@ const ProductModal = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const shopid = localStorage.getItem("shopId")
-    const shopProduct = await fetchShopProducts(shopid)
     try {
       const response = await fetch("https://farm-basket3.onrender.com/products/create", {
         method: "POST",
@@ -201,12 +200,22 @@ const ProductModal = ({
           quantity: formData.quantity,
         }),
       });
+      
       const data = await response.json();
+      console.log(data)
       if (!response.ok) {
         setError(`Error saving product: ${data.message}`);
       } else {
         onSave(data);
         onClose();
+        const imageResponse = await fetch("https://farm-basket3.onrender.com/images/product/image", {
+          method : "POST",
+          headers: { "Content-Type" : "aplication/json" },
+          body: JSON.stringify({
+            image : formData.image,
+            productid: data.productid
+          })
+        })
       }
     } catch (err) {
       setError(`Unable to save product: ${err}`);
