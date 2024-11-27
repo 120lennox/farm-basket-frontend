@@ -43,7 +43,7 @@ const shopStore = async({params}: PageProps)=>{
                         <div className="bg-gradient-to-r from-green-500 to-green-100">
                             <hr  />
                         </div>
-
+                        <div key={shopProduct.productid}>
                         <div className="mt-10 mb-10">
                             <div>
                                 <div className="rounded-sm">
@@ -71,13 +71,14 @@ const shopStore = async({params}: PageProps)=>{
                                         <div></div>
                                         <div>
                                             <div className="">
-                                                <Link className="bg-green-500 text-white rounded-full py-2 px-4 font-semibold" href="/">add to cart</Link>
+                                                <Link href={`/checkout/${shopProduct.productid}`} className="bg-green-500 text-white rounded-full py-2 px-4 font-semibold" >View Product</Link>
                                             </div>
                                             <div></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         </div>
 
                         <div className="mt-10">

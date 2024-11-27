@@ -188,6 +188,8 @@ const ProductModal = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const shopid = localStorage.getItem("shopId")
+    const shopProduct = await fetchShopProducts(shopid)
     try {
       const response = await fetch("https://farm-basket3.onrender.com/products/create", {
         method: "POST",
@@ -268,4 +270,4 @@ export default function Inventory() {
     </InventoryProvider>
   );
 }
-``
+
