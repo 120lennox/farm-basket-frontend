@@ -3,7 +3,7 @@ import React, { useState, FormEvent } from 'react';
 interface CreateShopModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onCreateShop: (shopData: { shopName: string; shopDescription: string }) => void;
+  onCreateShop: (shopData: { name: string; description: string }) => void;
 }
 
 const CreateShopModal: React.FC<CreateShopModalProps> = ({
@@ -11,21 +11,21 @@ const CreateShopModal: React.FC<CreateShopModalProps> = ({
   onClose,
   onCreateShop
 }) => {
-  const [shopName, setShopName] = useState<string>('');
-  const [shopDescription, setShopDescription] = useState<string>('');
+  const [name, setShopName] = useState<string>('');
+  const [description, setShopDescription] = useState<string>('');
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Validate inputs
-    if (!shopName.trim() || !shopDescription.trim()) {
+    if (!name.trim() || !description.trim()) {
       alert('Please fill in all fields');
       return;
     }
 
     // Call the create shop function passed as prop
     onCreateShop({
-      shopName,
-      shopDescription
+      name,
+      description
     });
 
     // Reset form and close modal
@@ -47,7 +47,7 @@ const CreateShopModal: React.FC<CreateShopModalProps> = ({
               type="text"
               placeholder="Enter shop name"
               className="input input-bordered w-full bg-white text-black border-none ring-1 focus:outline-CustomGreen-500 rounded-full"
-              value={shopName}
+              value={name}
               onChange={(e) => setShopName(e.target.value)}
               required
             />
@@ -60,7 +60,7 @@ const CreateShopModal: React.FC<CreateShopModalProps> = ({
             <input
               className="input input-bordered w-full bg-white text-black border-none ring-1 focus:outline-CustomGreen-500 rounded-full"
               placeholder="Describe your shop"
-              value={shopDescription}
+              value={description}
               onChange={(e) => setShopDescription(e.target.value)}
               required
             />

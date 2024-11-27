@@ -17,6 +17,8 @@ export default function Navbar() {
 
   // Updated interface to match the CreateShopModal's prop type
   interface ShopData {
+    ownerid: number,
+    shopid: number,
     shopName: string;
     shopDescription: string;
     name?: string;
