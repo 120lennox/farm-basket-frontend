@@ -108,7 +108,8 @@ export const fetchShopProducts = async(shopid: string)=>{
       console.error('server error: ', error);
       throw new Error('failed to fetch user by id');
     }
-  }
+}
+
   
   export const fetchShopid = async (id: string): Promise<Shop> => {
     try {
@@ -123,7 +124,7 @@ export const fetchShopProducts = async(shopid: string)=>{
       console.error('server error:', error);
       throw new Error('Failed to fetch shop');
     }
-  }
+}
   
   export const fetchProduct = async (): Promise<Product[]> => {
     try {
@@ -138,8 +139,9 @@ export const fetchShopProducts = async(shopid: string)=>{
       console.error('server error:', error);
       throw new Error('Failed to fetch products');
     }
-  }
-  
+}
+
+
   export const fetchProductid = async (id: string): Promise<Product> => {
     try {
       console.log(id);
@@ -153,4 +155,7 @@ export const fetchShopProducts = async(shopid: string)=>{
       console.error('server error:', error);
       throw new Error('Failed to fetch product');
     }
-  }
+}
+
+
+  
