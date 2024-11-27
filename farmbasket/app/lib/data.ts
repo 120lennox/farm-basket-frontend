@@ -66,24 +66,9 @@ export const fetchShopCardData = async (): Promise<Shop[]> => {
     } catch (error) {
       console.error('server error: ', error);
       throw new Error('failed to fetch user by id');
+    }
 }
 
-// fetch user by id 
-export const fetchUserById = async (id:number) => {
-    try{
-        console.log("fetching user by id...")
-        const result = await fetch(`https://farm-basket3.onrender.com/users/${id}`)
-        const data = await result.json()
-
-        console.log("User: ", data)
-
-        return data
-    
-    } catch(error){
-        console.error('server error: ', error)
-        throw new Error('failed to fetch user by id')
-    }
-  }
   
   export const fetchShopid = async (id: string): Promise<Shop> => {
     try {
@@ -97,22 +82,8 @@ export const fetchUserById = async (id:number) => {
     } catch (error) {
       console.error('server error:', error);
       throw new Error('Failed to fetch shop');
-}
-
-export const fetchShopid = async(id:number)=>{
-    try{
-        console.log(id)
-        const result = await fetch(`https://farm-basket3.onrender.com/shop/${id}`)
-        const data = await result.json()
-
-        console.log("New data", data)
-
-        return data
-    } catch(error){
-        console.error('server error:', error)
-        throw new Error('Failed to fetch shop')
     }
-  }
+}
   
   export const fetchProduct = async (): Promise<Product[]> => {
     try {
@@ -126,24 +97,10 @@ export const fetchShopid = async(id:number)=>{
     } catch (error) {
       console.error('server error:', error);
       throw new Error('Failed to fetch products');
+    }
 }
 
 
-export const fetchProduct = async () =>{
-    try{
-        console .log("fetching started...")
-        const result = await fetch ('https://farm-basket3.onrender.com/products')
-        const data = await result.json()
-
-        console.log("API data", data)
-
-        return data
-    } catch(error){
-        console.error('server error:', error)
-        throw new Error('Failed to fetch products')
-    }
-  }
-  
   export const fetchProductid = async (id: string): Promise<Product> => {
     try {
       console.log(id);
@@ -156,30 +113,8 @@ export const fetchProduct = async () =>{
     } catch (error) {
       console.error('server error:', error);
       throw new Error('Failed to fetch product');
-}
-
-export const fetchNotifications = async () => {
-    try {
-        const result = await fetch('https://farm-basket3.onrender.com/notifications/user')
-        const data = await result.json()
-
-        return data
-    }catch (error) {
-        throw new Error(`Failed to fetch Notification: ${error}`)
     }
 }
 
-export const fetchProductid = async(id:number)=>{
-    try{
-        console.log(id)
-        const result = await fetch(`https://farm-basket3.onrender.com/Product/${id}`)
-        const data = await result.json()
 
-        console.log("New data", data)
-
-        return data
-    } catch(error){
-        console.error('server error:', error)
-        throw new Error('Failed to fetch product')
-    }
-  }
+  
