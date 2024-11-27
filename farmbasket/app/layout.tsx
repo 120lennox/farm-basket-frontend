@@ -15,12 +15,13 @@ export default function RootLayout({
   const isDashboardRouter = pathname.startsWith('/dashboard')
 
 return (
+  
     <html lang="en">
+      
       <body
         /**className={`${geistSans.variable} ${geistMono.variable} antialiased`}**/
-        className="font-Poppins   dark:bg-yellow-50 dark:text-black"
+        className="font-Poppins dark:bg-yellow-50 dark:text-black"
       >
-
         <div>
           <div className="mx-8">
             { !isDashboardRouter && <Navbar />}
@@ -28,6 +29,7 @@ return (
           {children}
         </div>
       </body>
+  
     </html>
   );
 }
