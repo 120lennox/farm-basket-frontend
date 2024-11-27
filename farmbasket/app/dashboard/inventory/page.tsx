@@ -1,6 +1,7 @@
 "use client";
 import { fetchShopProducts } from "@/app/lib/data";
 import React, { useState, createContext, useContext, useEffect } from "react";
+import axios from "axios";
 
 // Interfaces
 interface Product {
@@ -65,7 +66,10 @@ const useInventory = () => {
 };
 
 // Inventory Page Component
-const InventoryPage = () => {
+const InventoryPage = async () => {
+  const shopid = localStorage.getItem("shopId")
+  // const shopProduct = await fetchShopProducts(shopid)
+
   const { inventory, updateProduct, deleteProduct, addProduct } = useInventory();
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isAddingProduct, setIsAddingProduct] = useState(false);
@@ -75,11 +79,17 @@ const InventoryPage = () => {
   useEffect(() => {
     const fetchData = async (shopId: number) => {
       try {
-        const result = await fetchShopProducts(shopId); // Replace with your API call
+        const result = await fetchShopProducts(shopid); // Replace with your API call
         result.forEach((product: Product) => addProduct(product));
       } catch (err) {
         setError(`Error fetching shop products: ${err}`);
       }
+
+      // useEffect(()=>{
+      //   try {
+      //     const 
+      //   }
+      // })
     };
 
     fetchData(1); // Replace with the actual shop ID
@@ -188,8 +198,6 @@ const ProductModal = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const shopid = localStorage.getItem("shopId")
-    const shopProduct = await fetchShopProducts(shopid)
     try {
       const response = await fetch("https://farm-basket3.onrender.com/products/create", {
         method: "POST",
@@ -211,6 +219,7 @@ const ProductModal = ({
     } catch (err) {
       setError(`Unable to save product: ${err}`);
     }
+
   };
 
   return (
