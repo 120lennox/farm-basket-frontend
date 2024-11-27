@@ -2,6 +2,7 @@ import { PageProps } from "@/.next/types/app/page";
 import { fetchShopid } from "@/app/lib/data";
 import Image from "next/image";
 import Link from "next/link";
+import { fetchShopProducts } from "@/app/lib/data";
 
 // Define the Shop interface to match the structure of your API response
 export interface Shop {
@@ -14,6 +15,7 @@ export interface Shop {
 const shopStore = async({params}: PageProps)=>{
     const {id} = await params
     const shopid = await fetchShopid(id);
+    const shopProduct = await fetchShopProducts(id)
     return <div>
         <div className="mx-8">
                 <div key={shopid.shopid}>
@@ -46,7 +48,7 @@ const shopStore = async({params}: PageProps)=>{
                             <div>
                                 <div className="rounded-sm">
                                     <Image className="rounded-2xl"
-                                           src="https://i.pinimg.com/736x/05/3f/47/053f47cb444eacf993befed3f5945f58.jpg"
+                                           src={shopProduct.image}
                                            alt="Fertilizer bag"
                                            width={400}
                                            height={500} 
@@ -57,14 +59,14 @@ const shopStore = async({params}: PageProps)=>{
                                     <div className="bg-neutral-50 rounded-3xl p-5 flex flex-col space-y-1">
                                         <div className="flex flex-row justify-between">
                                             <div className="text-[18px] font-semibold">
-                                                Fertlizer <span>50KG</span>
+                                                {shopProduct.name}
                                             </div>
                                             <div className="text-[18px] font-semibold">
-                                                <span>MK</span>95,000
+                                                <span>MK</span>{shopProduct.price}
                                             </div>
                                         </div>
                                         <div className="w-1/2">
-                                            Suitable for crops like Maize, tobacco, rice etc
+                                            {shopProduct.description}
                                         </div>
                                         <div></div>
                                         <div>
