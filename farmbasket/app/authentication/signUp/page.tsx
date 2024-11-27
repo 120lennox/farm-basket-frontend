@@ -120,11 +120,11 @@ export default function SignUp() {
         <h1 className="text-gray-800 text-2xl font-extrabold text-center">
           Create an Account
         </h1>
-        <form onSubmit={handleSubmit} className="space-y-4 text-white">
+        <form onSubmit={handleSubmit} className="space-y-4 text-black">
           <input
             aria-label="Username"
             onChange={(e) => setUserName(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             type="text"
             value={userName}
             placeholder="Username"
@@ -136,7 +136,7 @@ export default function SignUp() {
           <input
             aria-label="Email Address"
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             type="email"
             value={email}
             placeholder="Email"
@@ -146,7 +146,7 @@ export default function SignUp() {
           <input
             aria-label="Location"
             onChange={(e) => setLocation(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             type="text"
             value={location}
             placeholder="Location"
@@ -158,7 +158,7 @@ export default function SignUp() {
           <input
             aria-label="Password"
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             type={showPassword ? "text" : "password"}
             value={password}
             placeholder="Password"
@@ -170,7 +170,7 @@ export default function SignUp() {
           <input
             aria-label="Confirm Password"
             onChange={(e) => setConfirmPass(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             type={showPassword ? "text" : "password"}
             value={confirmPass}
             placeholder="Confirm Password"
