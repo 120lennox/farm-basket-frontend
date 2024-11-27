@@ -41,6 +41,8 @@ export default function Navbar() {
       // Set the shopId from the response
       if (response.data && response.data.shopid) {
         setShopId(response.data.shopid);
+        localStorage.setItem("shopId", response.data.shopid)
+
       }
 
       console.log("Shop Created", shopData)
