@@ -17,7 +17,7 @@ import Image from "next/image";
             <label className="flex items-center justify-between border rounded-2xl px-4 py-3 cursor-pointer hover:border-green-500 transition">
               <div className="flex items-center">
                 <Image
-                  src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Airtel_Logo_2010.svg"
+                  src=""
                   alt="AIRTEL"
                   className="w-8 h-8 mr-3"
                 />
@@ -33,7 +33,7 @@ import Image from "next/image";
             <label className="flex items-center justify-between border rounded-2xl px-4 py-3 cursor-pointer hover:border-green-500 transition">
               <div className="flex items-center">
                 <Image
-                  src="https://upload.wikimedia.org/wikipedia/commons/c/c1/TNM_Logo.svg"
+                  src=""
                   alt="TNM"
                   className="w-8 h-8 mr-3"
                 />
@@ -49,8 +49,10 @@ import Image from "next/image";
             <label className="flex items-center justify-between border rounded-2xl px-4 py-3 cursor-pointer hover:border-green-500 transition">
               <div className="flex items-center">
                 <Image
-                  src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.svg"
+                  src=""
                   alt="VISA"
+                  width={100}
+                  height={50}
                   className="w-8 h-8 mr-3"
                 />
                 <span className="font-medium text-gray-800"></span>
