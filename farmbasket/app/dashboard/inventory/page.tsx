@@ -1,6 +1,7 @@
 "use client";
 import { fetchShopProducts } from "@/app/lib/data";
 import React, { useState, createContext, useContext, useEffect } from "react";
+import axios from "axios";
 
 // Interfaces
 interface Product {
@@ -65,7 +66,10 @@ const useInventory = () => {
 };
 
 // Inventory Page Component
-const InventoryPage = () => {
+const InventoryPage = async () => {
+  const shopid = localStorage.getItem("shopId")
+  // const shopProduct = await fetchShopProducts(shopid)
+
   const { inventory, updateProduct, deleteProduct, addProduct } = useInventory();
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isAddingProduct, setIsAddingProduct] = useState(false);
@@ -82,6 +86,12 @@ const InventoryPage = () => {
       } catch (err) {
         setError(`Error fetching shop products: ${err}`);
       }
+
+      // useEffect(()=>{
+      //   try {
+      //     const 
+      //   }
+      // })
     };
 
     fetchData(); // Replace with the actual shop ID
@@ -221,6 +231,7 @@ const ProductModal = ({
     } catch (err) {
       setError(`Unable to save product: ${err}`);
     }
+
   };
 
   return (
