@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-export default function Checkout() {
+export default function Checkout({ id: string }) {
   const [rating, setRating] = useState(0);
   const [items, setItems] = useState(0);
 
@@ -16,7 +16,7 @@ export default function Checkout() {
         <h1>image here</h1>
       </div>
 
-      <div className="bg-yellow-800 p-6 rounded-lg shadow-lg text-white w-full lg:w-1/2 max-w-lg">
+      <div className="bg-gray-600 p-6 rounded-lg shadow-lg text-white w-full lg:w-1/2 max-w-lg">
         <h1 className="font-extrabold text-2xl mb-4">Water Pump</h1>
         <p className="mb-6 text-gray-200">
           Powerful and energy-efficient water pump is perfect for a variety of
