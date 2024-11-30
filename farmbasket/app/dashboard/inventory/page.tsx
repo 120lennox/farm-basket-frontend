@@ -73,17 +73,18 @@ const InventoryPage = () => {
 
   // Fetch products on mount
   useEffect(() => {
-    
-    const fetchData = async (shopId: number) => {
+    const shopid = localStorage.getItem('shopId')
+    const shopIdNumber = shopid ? parseInt(shopid,10) : null;
+    const fetchData = async () => {
       try {
-        const result = await fetchShopProducts(shopId); // Replace with your API call
+        const result = await fetchShopProducts(shopIdNumber); // Replace with your API call
         result.forEach((product: Product) => addProduct(product));
       } catch (err) {
         setError(`Error fetching shop products: ${err}`);
       }
     };
 
-    fetchData(1); // Replace with the actual shop ID
+    fetchData(); // Replace with the actual shop ID
   }, []);
 
   const handleSaveProduct = (product: Product) => {
