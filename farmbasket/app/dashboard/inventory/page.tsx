@@ -1,7 +1,5 @@
 "use client";
-import { fetchShopProducts } from "@/app/lib/data";
 import React, { useState, createContext, useContext, useEffect } from "react";
-import axios from "axios";
 
 // Interfaces
 interface Product {
@@ -27,7 +25,6 @@ const InventoryContext = createContext<InventoryContextType | undefined>(undefin
 const InventoryProvider = ({ children }: { children: React.ReactNode }) => {
   const [inventory, setInventory] = useState<Product[]>([]);
 
-  // Update product
   const updateProduct = (updatedProduct: Product) => {
     setInventory((prevInventory) =>
       prevInventory.map((product) =>
@@ -36,14 +33,12 @@ const InventoryProvider = ({ children }: { children: React.ReactNode }) => {
     );
   };
 
-  // Delete product
   const deleteProduct = (productId: string) => {
     setInventory((prevInventory) =>
       prevInventory.filter((product) => product.id !== productId)
     );
   };
 
-  // Add product
   const addProduct = (newProduct: Product) => {
     setInventory((prevInventory) => [...prevInventory, newProduct]);
   };
@@ -57,7 +52,6 @@ const InventoryProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-// Custom hook for accessing inventory context
 const useInventory = () => {
   const context = useContext(InventoryContext);
   if (!context)
@@ -65,37 +59,58 @@ const useInventory = () => {
   return context;
 };
 
-// Inventory Page Component
-const InventoryPage = async () => {
-  const shopid = localStorage.getItem("shopId")
-  // const shopProduct = await fetchShopProducts(shopid)
+// Utility Function for API Requests
+const apiRequest = async (url: string, options: RequestInit) => {
+  const token = localStorage.getItem("authToken");
+  if (!token) {
+    throw new Error("Authentication token is missing. Please log in again.");
+  }
 
+const enhancedOptions ={
+  ...options,
+  headers: {
+    ...options.headers,
+  Authorization: `Bearer ${token}`,
+}
+}
+
+  const response = await fetch(url, enhancedOptions);
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || "API request failed");
+  }
+  return response.json();
+};
+
+// Inventory Page Component
+const InventoryPage = () => {
   const { inventory, updateProduct, deleteProduct, addProduct } = useInventory();
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isAddingProduct, setIsAddingProduct] = useState(false);
   const [error, setError] = useState("");
 
-  // Fetch products on mount
   useEffect(() => {
-    const shopid = localStorage.getItem('shopId')
-    const shopIdNumber = shopid ? parseInt(shopid,10) : null;
     const fetchData = async () => {
-      try {
-        const result = await fetchShopProducts(shopIdNumber); // Replace with your API call
-        result.forEach((product: Product) => addProduct(product));
-      } catch (err) {
-        setError(`Error fetching shop products: ${err}`);
-      }
+      const shopId = localStorage.getItem("shopId");
+      const shopIdNumber = shopId ? parseInt(shopId, 10) : null;
 
-      // useEffect(()=>{
-      //   try {
-      //     const 
-      //   }
-      // })
+      try {
+        if (shopIdNumber) {
+          const result = await apiRequest(
+            `https://farm-basket3.onrender.com/shop/${shopIdNumber}/products`,
+            { method: "GET" }
+          );
+          result.forEach((product: Product) => addProduct(product));
+        } else {
+          setError("Shop ID is missing.");
+        }
+      } catch (err) {
+        setError(`Error fetching shop products: ${err instanceof Error ? err.message : err}`);
+      }
     };
 
-    fetchData(); // Replace with the actual shop ID
-  }, []);
+    fetchData();
+  }, [addProduct]);
 
   const handleSaveProduct = (product: Product) => {
     if (editingProduct) {
@@ -111,10 +126,12 @@ const InventoryPage = async () => {
     <div className="flex h-screen overflow-hidden">
       <div className="flex-1 p-4 bg-gray-100 overflow-y-auto">
         <h2 className="text-2xl text-black font-bold mb-4">Product Management</h2>
+
+        {error && <div className="text-red-500 mb-4">{error}</div>}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {inventory.map((product) => (
-            <div key={product.id || `product-${""}`} className="relative bg-white border rounded-lg p-4">
-              {/* Product Display */}
+            <div key={product.id} className="relative bg-white border rounded-lg p-4">
               <div>
                 <img
                   src={product.image}
@@ -127,7 +144,6 @@ const InventoryPage = async () => {
                 <p className="text-sm text-gray-600">Price: ${product.price}</p>
               </div>
 
-              {/* Menu for Edit/Delete */}
               <div className="absolute top-2 right-2">
                 <div className="relative group">
                   <button className="text-gray-500 hover:text-black">☰</button>
@@ -151,7 +167,6 @@ const InventoryPage = async () => {
           ))}
         </div>
 
-        {/* Add Product Button */}
         <button
           className="mt-4 bg-green-500 text-black px-4 py-2 rounded shadow"
           onClick={() => setIsAddingProduct(true)}
@@ -160,7 +175,6 @@ const InventoryPage = async () => {
         </button>
       </div>
 
-      {/* Modal for Add/Edit */}
       {(editingProduct || isAddingProduct) && (
         <ProductModal
           product={editingProduct || null}
@@ -203,108 +217,155 @@ const ProductModal = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://farm-basket3.onrender.com/products/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          type: formData.category,
-          price: formData.price,
-          quantity: formData.quantity,
-        }),
-      });
-      
-      const data = await response.json();
-      console.log(data)
-      if (!response.ok) {
-        setError(`Error saving product: ${data.message}`);
-      } else {
-        onSave(data);
-        onClose();
-        const imageResponse = await fetch("https://farm-basket3.onrender.com/images/product/image", {
-          method : "POST",
-          headers: { "Content-Type" : "aplication/json" },
+      const productResponse = await apiRequest(
+        "https://farm-basket3.onrender.com/products/create",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            image : formData.image,
-            productid: data.productid
-          })
-        })
-      }
-    } catch (err) {
-      setError(`Unable to save product: ${err}`);
-    }
+            name: formData.name,
+            category: formData.category,
+            price: formData.price,
+            quantity: formData.quantity,
+          }),
+        }
+      );
 
+      const file = (e.target as any).image.files?.[0];
+      if (file) {
+        const imageFormData = new FormData();
+        imageFormData.append("image", file);
+        imageFormData.append("productid", productResponse.id);
+
+        await apiRequest("https://farm-basket3.onrender.com/images/product/image", {
+          method: "POST",
+          body: imageFormData,
+        });
+      }
+
+      onSave(productResponse);
+      onClose();
+    } catch (err) {
+      setError(`Unable to save product: ${err instanceof Error
+        ? err.message
+        : "An unknown error occurred"}
+      `);
+    }
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white rounded-lg p-6 w-1/3">
-        <h2 className="text-lg text-black font-bold mb-4">
-          {product ? "Edit Product" : "Add Product"}
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <form
+        className="bg-white p-6 rounded-lg shadow-md w-full max-w-lg"
+        onSubmit={handleSubmit}
+      >
+        <h2 className="text-xl text-black font-bold mb-4">
+          {product ? "Edit Product" : "Add New Product"}
         </h2>
-        <form onSubmit={handleSubmit}>
-          {["name","quantity", "price"].map((field) => (
-            <div className="mb-4 text-black" key={field}>
-              <label className="block text-sm font-medium text-black capitalize">{field}</label>
-              <input
-                type={field === "quantity" || field === "price" ? "number" : "text"}
-                name={field}
-                value={formData[field as keyof Product] as string | number}
-                onChange={handleChange}
-                className="w-full border rounded p-2"
-                required
-              />
-            </div>
-          ))}
-          <div className="mb-4 text-black">
-            <label className="block text-sm font-medium text-black">Category</label>
-            <select
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              className="w-full border rounded p-2"
-              required
-            >
-              <option value="" disabled>
-                Select a category
+
+        {error && <p className="text-red-500 mb-4">{error}</p>}
+
+        <div className="mb-4 text-black">
+          <label htmlFor="name" className="block text-sm text-black font-medium mb-1">
+            Product Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full border rounded-md p-2"
+            required
+          />
+        </div>
+
+        <div className="mb-4 text-black">
+          <label htmlFor="category" className="block text-sm text-black font-medium mb-1">
+            Category
+          </label>
+          <select
+            id="category"
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            className="w-full border rounded-md p-2"
+            required
+          >
+            <option value="" disabled>
+              Select a category
+            </option>
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
               </option>
-              {categories.map((category) => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="mb-4 text-black">
-            <label className="block text-sm font-medium text-black">Image</label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) {
-                  setFormData((prev) => ({ ...prev, image: URL.createObjectURL(file) }));
-                }
-              }}
-              className="w-full border rounded p-2"
-              required={!product}
-            />
-          </div>
-          <div className="flex justify-end">
-            <button type="button" onClick={onClose} className="text-red-500 px-4 py-2 rounded hover:bg-red-100">
-              Cancel
-            </button>
-            <button type="submit" className="ml-2 bg-green-500 text-white px-4 py-2 rounded">
-              Save
-            </button>
-          </div>
-        </form>
-      </div>
+            ))}
+          </select>
+        </div>
+
+        <div className="mb-4 text-black">
+          <label htmlFor="price" className="block text-sm text-black font-medium mb-1">
+            Price
+          </label>
+          <input
+            type="number"
+            id="price"
+            name="price"
+            value={formData.price}
+            onChange={handleChange}
+            className="w-full border rounded-md p-2"
+            required
+          />
+        </div>
+
+        <div className="mb-4 text-black">
+          <label htmlFor="quantity" className="block text-sm text-black font-medium mb-1">
+            Quantity
+          </label>
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            value={formData.quantity}
+            onChange={handleChange}
+            className="w-full border rounded-md p-2"
+            required
+          />
+        </div>
+
+        <div className="mb-4 text-black">
+          <label htmlFor="image" className="block text-sm text-black font-medium mb-1">
+            Product Image
+          </label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            className="w-full border rounded-md p-2"
+          />
+        </div>
+
+        <div className="flex justify-end space-x-2">
+          <button
+            type="button"
+            onClick={onClose}
+            className="bg-gray-300 text-black px-4 py-2 rounded shadow"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded shadow"
+          >
+            Save
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
 
-// Export the InventoryPage wrapped with InventoryProvider
 export default function Inventory() {
   return (
     <InventoryProvider>
@@ -312,4 +373,3 @@ export default function Inventory() {
     </InventoryProvider>
   );
 }
-

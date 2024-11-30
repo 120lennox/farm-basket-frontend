@@ -1,5 +1,7 @@
 // all data fetches here
 
+import { Result } from "postcss";
+
 // Define interfaces for your data types
   
   interface User {
@@ -155,6 +157,20 @@ export const fetchShopProducts = async(shopid: number)=>{
       console.error('server error:', error);
       throw new Error('Failed to fetch product');
     }
+}
+export const fetchNotification = async () => {
+  try {
+    console.log("fetching users...");
+    
+    const result = await fetch('https://farm-basket3.onrender.com/notification');
+    const notification = await result.json();
+    
+    console.log("Notification: ", notification);
+    return notification;
+  } catch (error) {
+    console.error('server error: ', error);
+    throw new Error('failed to fetch notification');
+  }
 }
 
 
