@@ -75,6 +75,7 @@ const InventoryPage = () => {
   useEffect(() => {
     const fetchData = async (shopId: number) => {
       try {
+        console.log("Fetching products...");
         const result = await fetchShopProducts(shopId);
         
         result.forEach((product: Product) => addProduct(product))
@@ -84,7 +85,7 @@ const InventoryPage = () => {
       }
     };
 
-    fetchData(1); // Replace with the actual shop ID
+    fetchData(0); // Replace with the actual shop ID
   }, []);
 
   const handleSaveProduct = (product: Product) => {
