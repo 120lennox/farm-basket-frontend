@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function Airtel() {
+export default function Mpamba() {
   const [mobile, setMobile] = useState<string>("");
   const [amount, setAmount] = useState<number | "">("");
   const [error, setError] = useState<string>("");
@@ -31,9 +31,6 @@ export default function Airtel() {
     e.preventDefault();
 
     if (!validateInputs()) return;
-
-    console.log("Mobile Number:", mobile);
-    console.log("Amount:", amount);
 
     alert(`Payment of MWK ${amount} initiated for ${mobile}`);
   };
@@ -87,7 +84,7 @@ export default function Airtel() {
         </div>
         <button
           type="submit"
-          className="w-full py-3 bg-CustomGreen-500 text-white font-semibold rounded-md hover:bg-red-600 focus:ring-2 focus:ring-red-400 focus:outline-none transition duration-200"
+          className="w-full py-3 bg-CustomGreen-500 text-white font-semibold rounded-md hover:bg-green-600 focus:ring-2 focus:ring-green-400 focus:outline-none transition duration-200"
         >
           Pay Now
         </button>
