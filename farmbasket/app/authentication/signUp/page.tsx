@@ -87,8 +87,8 @@ export default function SignUp() {
 
         if (response.ok) {
           setServerMessage("Registration successful!");
-          if (data.access_token) {
-            localStorage.setItem("authToken", data.access_token);
+          if (data.token) {
+            localStorage.setItem("authToken", data.token);
           }
           router.push("/");
         } else {

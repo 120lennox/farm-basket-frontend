@@ -1,13 +1,21 @@
-'use client'
+import { fetchShopid } from "@/app/lib/data";
 
 import Link from "next/link"
+interface ShopDetails {
+    id: number;
+    name: string;
+    description: string;
+    owner: string;
+}
 
+const Sidebar = async ({params}: {params:{id:string}}) => {
+    const shopDetails: ShopDetails = await fetchShopid(params.id);
 
-export default function Sidebar(){
     return <div>
         <div className="mt-10 flex flex-col space-y-10">
-            <div className="font-bold text-[30px]">
-                Farm Basket
+            <div className="font-bold">
+               <h1 className="font-semibold">{shopDetails.name}</h1>
+               <p className="font-light">{shopDetails.description}</p>
             </div>
             <div>
                 <input type="text" className="bg-customBlue-800 px-8 py-2 border-none ring-1 focus:ring-CustomGreen-500 focus:outline-none rounded-full" />
@@ -39,3 +47,5 @@ export default function Sidebar(){
         </div>
     </div>
 }
+
+export default Sidebar;
