@@ -11,6 +11,13 @@ export default function Dashboard() {
   const [shops, setShops] = useState([
     { id: 1, name: "Shop A" },
     { id: 2, name: "Shop B" },
+    { id: 3, name: "Shop C" },
+    { id: 4, name: "Shop D" },
+    { id: 5, name: "Shop E" },
+    { id: 6, name: "Shop F" },
+    { id: 7, name: "Shop G" },
+    { id: 8, name: "Shop H" },
+    { id: 9, name: "Shop I" },
   ]);
 
   const handleDeleteUser = (id: number) => {
@@ -21,7 +28,7 @@ export default function Dashboard() {
     <div className="flex h-screen">
       {/* Sidebar */}
       <div className="w-1/4 bg-gray-800 text-white flex flex-col p-5">
-        <h1 className="text-2xl font-bold mb-6">Admin Dashboard</h1>
+        <h1 className="text-2xl font-bold mb-6">Jose Mbukwa</h1>
         <div className="mb-4">
           <input
             type="text"
@@ -89,3 +96,4 @@ export default function Dashboard() {
     </div>
   );
 }
+                                                                   
