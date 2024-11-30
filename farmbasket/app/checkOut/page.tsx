@@ -5,7 +5,7 @@ export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch cart data from the backend
+  // Fetch whats in the cart data from the backend
   useEffect(() => {
     const fetchCartData = async () => {
       try {
@@ -36,7 +36,7 @@ export default function Cart() {
   if (loading) {
     return (
       <div className="min-h-screen flex justify-center items-center bg-yellow-50">
-        <h1 className="text-xl font-semibold text-gray-700">Loading...</h1>
+        <h1 className="text-xl font-semibold text-gray-700">Loading....</h1>
       </div>
     );
   }
