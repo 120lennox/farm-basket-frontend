@@ -2,6 +2,7 @@
 import { fetchShopProducts } from "@/app/lib/data";
 import React, { useState, createContext, useContext, useEffect } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 // Interfaces
 interface Product {
@@ -115,8 +116,8 @@ const InventoryPage = async () => {
             <div key={product.id} className="relative bg-white border rounded-lg p-4">
               {/* Product Display */}
               <div>
-                <img
-                  src={product.image}
+                <Image
+                  src={shopid.image}
                   alt={product.name}
                   className="w-20 h-20 object-cover rounded-md mb-2"
                 />
