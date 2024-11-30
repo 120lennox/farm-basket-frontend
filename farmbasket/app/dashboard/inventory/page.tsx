@@ -9,6 +9,7 @@ interface Product {
   price: number;
   image: string;
   category: string;
+  description: string; 
 }
 
 interface InventoryContextType {
@@ -69,8 +70,12 @@ const apiRequest = async (url: string, options: RequestInit) => {
 const enhancedOptions ={
   ...options,
   headers: {
-    ...options.headers,
+    ...(!(options.body instanceof FormData) && { 
+      'Content-Type': 'application/json' 
+    }),
+    ...(options.headers || {}),
   Authorization: `Bearer ${token}`,
+  'Content-Type': 'application/json' 
 }
 }
 
@@ -200,7 +205,7 @@ const ProductModal = ({
   onSave: (product: Product) => void;
 }) => {
   const [formData, setFormData] = useState<Product>(
-    product || { id: `${Date.now()}`, name: "", quantity: 0, price: 0, image: "", category: "" }
+    product || { id: `${Date.now()}`, name: "", quantity: 0, price: 0, image: "", category: "", description:"" }
   );
   const [error, setError] = useState("");
 
@@ -216,6 +221,7 @@ const ProductModal = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const file = (e.target as any).image.files?.[0];
     try {
       const productResponse = await apiRequest(
         "https://farm-basket3.onrender.com/products/create",
@@ -224,6 +230,7 @@ const ProductModal = ({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             name: formData.name,
+            description: formData.description,
             category: formData.category,
             price: formData.price,
             quantity: formData.quantity,
@@ -239,10 +246,11 @@ const ProductModal = ({
 
         await apiRequest("https://farm-basket3.onrender.com/images/product/image", {
           method: "POST",
-          body: imageFormData,
+          body: JSON.stringify({
+          })
         });
-      }
-
+      
+    }
       onSave(productResponse);
       onClose();
     } catch (err) {
@@ -301,6 +309,21 @@ const ProductModal = ({
               </option>
             ))}
           </select>
+        </div>
+
+        <div className="mb-4 text-black">
+          <label htmlFor="description" className="block text-sm text-black font-medium mb-1">
+            description
+          </label>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            className="w-full border rounded-md p-2"
+            required
+          />
         </div>
 
         <div className="mb-4 text-black">
