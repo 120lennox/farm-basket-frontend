@@ -11,11 +11,12 @@ export default function Login() {
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [visible, setVisible] = useState(false); // For ForgotPassword modal
+  const [loading, setLoading] = useState(false); // For loading spinner
   const router = useRouter();
 
-  interface ErrorMessageProps { 
-    message?: string; 
-  }  
+  interface ErrorMessageProps {
+    message?: string;
+  }
   const validateEmail = (email: string) =>
     /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
 
@@ -23,17 +24,20 @@ export default function Login() {
     e.preventDefault();
     setEmailError("");
     setPasswordError("");
-  
+    setLoading(true); // Show loading spinner
+
     if (!validateEmail(email)) {
       setEmailError("Please enter a valid email address.");
+      setLoading(false); // Hide loading spinner
       return;
     }
-  
+
     if (password.length < 8) {
       setPasswordError("Password must be at least 8 characters long.");
+      setLoading(false); // Hide loading spinner
       return;
     }
-  
+
     try {
       const res = await fetch("https://farm-basket3.onrender.com/auth/login", {
         method: "POST",
@@ -42,8 +46,6 @@ export default function Login() {
       });
       const data = await res.json();
 
-      console.log(data.access_token)
-  
       if (!res.ok) {
         if (data.message.includes("email")) {
           setEmailError("Invalid email address.");
@@ -52,21 +54,25 @@ export default function Login() {
         } else {
           setEmailError("Login failed. Please check your credentials.");
         }
+        setLoading(false); // Hide loading spinner
         return;
       }
 
-      if (data.access_token) localStorage.setItem("authToken", data.access_token);
+      if (data.access_token)
+        localStorage.setItem("authToken", data.access_token);
       router.push("/");
       setEmail("");
       setPassword("");
     } catch (error) {
       console.error("Error during login:", error);
       setEmailError("Unable to log in. Please try again later.");
+    } finally {
+      setLoading(false); // Hide loading spinner
     }
   };
 
   const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) =>
-  message ? <p className="text-red-500 text-xs mt-1">{message}</p> : null ;
+    message ? <p className="text-red-500 text-xs mt-1">{message}</p> : null;
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
@@ -78,7 +84,7 @@ export default function Login() {
             convenient, high-quality trading.
           </p>
           <div className="mt-4">
-            <p className="text-xs">Dont have an account?</p>
+            <p className="text-xs">Don't have an account?</p>
             <Link
               href="/authentication/signUp"
               className="bg-white text-green-900 px-4 py-2 rounded-full inline-block mt-2 hover:bg-gray-100"
@@ -136,8 +142,9 @@ export default function Login() {
           <button
             type="submit"
             className="w-full bg-green-700 text-white py-3 rounded-lg font-medium hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300"
+            disabled={loading} // Disable button while loading
           >
-            Login
+            {loading ? "Loading..." : "Login"} {/* Show spinner or text */}
           </button>
         </form>
       </div>

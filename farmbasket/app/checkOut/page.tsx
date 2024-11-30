@@ -1,87 +1,121 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function Checkout({ id: string }) {
-  const [rating, setRating] = useState(0);
-  const [items, setItems] = useState(0);
+export default function Cart() {
+  const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const handleRating = (index: number) => {
-    setRating(index + 1);
-  };
+  // Fetch cart data from the backend
+  useEffect(() => {
+    const fetchCartData = async () => {
+      try {
+        const res = await fetch(
+          "https://farm-basket3.onrender.com/api/cart-summary",
+          {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch cart data.");
+        }
+
+        const data = await res.json();
+        setCartItems(data.cartItems || []);
+      } catch (error) {
+        console.error("Error fetching cart data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCartData();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center bg-yellow-50">
+        <h1 className="text-xl font-semibold text-gray-700">Loading...</h1>
+      </div>
+    );
+  }
+
+  if (cartItems.length === 0) {
+    return (
+      <div className="min-h-screen flex justify-center items-center bg-yellow-50">
+        <h1 className="text-xl font-semibold text-gray-700">
+          Your cart is empty.
+        </h1>
+      </div>
+    );
+  }
+
+  // Calculate total price
+  const totalAmount = cartItems.reduce(
+    (total, item) => total + item.quantity * item.price,
+    0
+  );
 
   return (
-    <div className="flex flex-col lg:flex-row justify-evenly items-center p-8 bg-gray-100 min-h-screen">
-      <div className="flex justify-center items-center w-full lg:w-1/2 mb-8 lg:mb-0">
-        <div className="w-[300px] h-[300px] bg-gray-300 rounded-lg flex items-center justify-center"></div>
-        <h1>image here</h1>
-      </div>
+    <div className="bg-yellow-50 flex justify-center items-center min-h-screen">
+      <div className="w-full max-w-3xl bg-white shadow-lg rounded-lg p-4">
+        {/* Header */}
+        <h1 className="text-2xl font-bold text-center text-green-700 mb-6">
+          Shopping Cart
+        </h1>
 
-      <div className="bg-gray-600 p-6 rounded-lg shadow-lg text-white w-full lg:w-1/2 max-w-lg">
-        <h1 className="font-extrabold text-2xl mb-4">Water Pump</h1>
-        <p className="mb-6 text-gray-200">
-          Powerful and energy-efficient water pump is perfect for a variety of
-          residential and light commercial applications.
-        </p>
-
-        <div className="flex items-center gap-2 mb-4">
-          {[...Array(5)].map((_, index) => (
-            <svg
-              key={index}
-              onClick={() => handleRating(index)}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill={index < rating ? "gold" : "gray"}
-              className="w-8 h-8 cursor-pointer transition-transform transform hover:scale-125"
-            >
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg>
-          ))}
-        </div>
-        <p className="text-sm mb-6">
-          {rating > 0
-            ? `You rated this product ${rating} out of 5 stars.`
-            : "Click on the stars to rate this product."}
-        </p>
-
-        <div className="flex justify-between items-center border-b-2 pb-4 mb-4">
-          <div>
-            <p className="text-lg font-bold">
-              <span className="text-sm ">MK</span>550,000
-            </p>
-          </div>
-          <h2 className="text-green-400 font-bold">Save MK 60,000</h2>
+        {/* Table Headers */}
+        <div className="grid grid-cols-4 text-gray-600 font-semibold border-b pb-3 mb-3">
+          <h2>ITEM</h2>
+          <h2>QUANTITY</h2>
+          <h2>PRICE</h2>
+          <h2>TOTAL</h2>
         </div>
 
-        <div className="flex justify-between items-center border-b-2 pb-4 mb-4">
-          <div className="flex items-center bg-gray-700 rounded-lg overflow-hidden">
-            <button
-              className="px-4 py-2 text-white hover:bg-gray-600"
-              onClick={() => setItems(items - 1)}
-            >
-              -
-            </button>
-            <button className="px-4 py-2 text-white font-bold">{items}</button>
-            <button
-              className="px-4 py-2 text-white hover:bg-gray-600"
-              onClick={() => setItems(items + 1)}
-            >
-              +
-            </button>
+        {/* Cart Items */}
+        {cartItems.map((item, index) => (
+          <div
+            key={item.id || index}
+            className="grid grid-cols-4 items-center gap-4 text-gray-800 py-3 border-b"
+          >
+            <div className="flex items-center">
+              <img
+                src={items.image || "/placeholder.png"}
+                alt={item.description || "Product"}
+                className="w-16 h-16 object-cover rounded-lg border"
+              />
+              <span className="ml-4">
+                {item.description || "No Description"}
+              </span>
+            </div>
+            <div className="text-center">
+              <span>{item.quantity}</span>
+            </div>
+            <div className="text-center">
+              <span>${item.price.toFixed(2)}</span>
+            </div>
+            <div className="text-center">
+              <span>${(item.quantity * item.price).toFixed(2)}</span>
+            </div>
           </div>
-          <div>
-            <p className="text-sm">
-              Only <span> {}</span> items left!
-            </p>
-            <p className="text-xs text-gray-300">Don’t miss it</p>
-          </div>
+        ))}
+
+        {/* Total Section */}
+        <div className="mt-6 flex justify-between items-center">
+          <h2 className="text-xl font-semibold text-gray-800">Total:</h2>
+          <span className="text-xl font-bold text-green-700">
+            ${totalAmount.toFixed(2)}
+          </span>
         </div>
 
-        <div className="flex justify-center items-center gap-4">
-          <button className="px-6 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-500">
-            Add to Cart
+        {/* Buttons */}
+        <div className="mt-6 flex justify-between">
+          <button className="bg-gray-200 text-gray-800 px-4 py-2 rounded-md shadow hover:bg-gray-300">
+            Continue Shopping
           </button>
-          <button className="px-6 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-500">
-            Message
+          <button className="bg-green-700 text-white px-4 py-2 rounded-md shadow hover:bg-green-800">
+            Checkout
           </button>
         </div>
       </div>
