@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function SignUp() {
   const router = useRouter();
@@ -20,11 +21,11 @@ export default function SignUp() {
   const [locationError, setLocationError] = useState("");
   const [serverMessage, setServerMessage] = useState("");
 
-  function validateEmail(email) {
+  function validateEmail(email: string) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     setUserNameError("");
@@ -104,10 +105,12 @@ export default function SignUp() {
     <div className="flex flex-col justify-center items-center min-h-screen p-4 ">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6 space-y-6">
         <div className="flex justify-center">
-          <img
+          <Image
             src="/Log.png"
             alt="Farm Basket Logo"
-            className="w-25 h-23 object-contain  "
+            width={100}
+            height={50}
+            className="object-contain  "
           />
         </div>
         <p className="text-gray-600 text-center">
@@ -117,11 +120,11 @@ export default function SignUp() {
         <h1 className="text-gray-800 text-2xl font-extrabold text-center">
           Create an Account
         </h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 text-black">
           <input
             aria-label="Username"
             onChange={(e) => setUserName(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             type="text"
             value={userName}
             placeholder="Username"
@@ -133,7 +136,7 @@ export default function SignUp() {
           <input
             aria-label="Email Address"
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             type="email"
             value={email}
             placeholder="Email"
@@ -143,7 +146,7 @@ export default function SignUp() {
           <input
             aria-label="Location"
             onChange={(e) => setLocation(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             type="text"
             value={location}
             placeholder="Location"
@@ -155,7 +158,7 @@ export default function SignUp() {
           <input
             aria-label="Password"
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             type={showPassword ? "text" : "password"}
             value={password}
             placeholder="Password"
@@ -167,7 +170,7 @@ export default function SignUp() {
           <input
             aria-label="Confirm Password"
             onChange={(e) => setConfirmPass(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full p-3 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             type={showPassword ? "text" : "password"}
             value={confirmPass}
             placeholder="Confirm Password"

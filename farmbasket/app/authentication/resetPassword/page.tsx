@@ -1,12 +1,13 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function ResetPassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
   }
 
@@ -14,7 +15,13 @@ export default function ResetPassword() {
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
         <div className="flex justify-center mb-6">
-          <img src="/Log.png" alt="logo" className="w-35 h-35 object-cover " />
+          <Image
+            src="/Log.png"
+            alt="logo"
+            width={200}
+            height={50}
+            className="w-35 h-35 object-cover "
+          />
         </div>
         <h1 className="text-xl font-bold text-gray-800 mb-2 text-center">
           Reset Account Password

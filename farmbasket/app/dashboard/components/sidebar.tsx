@@ -1,20 +1,21 @@
-'use client'
+import { fetchShopid } from "@/app/lib/data";
 
-import { usePathname } from "next/navigation"
 import Link from "next/link"
-import NavLink from "./navLink"
-import { fetchShopid, fetchUserById } from "@/app/lib/data"
-import { PageProps } from "@/.next/types/app/layout"
+interface ShopDetails {
+    id: number;
+    name: string;
+    description: string;
+    owner: string;
+}
 
-export default function Sidebar(){
-// const Sidebar = async({params}: PageProps)=>{
-//     const {id} = await params
-//     const shop = await fetchShopid(id)
-//     const pathname = usePathname()
+const Sidebar = async ({params}: {params:{id:string}}) => {
+    const shopDetails: ShopDetails = await fetchShopid(params.id);
+
     return <div>
         <div className="mt-10 flex flex-col space-y-10">
-            <div className="font-bold text-[30px]">
-               Farm basket
+            <div className="font-bold">
+               <h1 className="font-semibold">{shopDetails.name}</h1>
+               <p className="font-light">{shopDetails.description}</p>
             </div>
             <div>
                 <input type="text" className="bg-customBlue-800 px-8 py-2 border-none ring-1 focus:ring-CustomGreen-500 focus:outline-none rounded-full" />
@@ -47,4 +48,4 @@ export default function Sidebar(){
     </div>
 }
 
-// export default Sidebar;
+export default Sidebar;

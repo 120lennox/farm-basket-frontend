@@ -1,4 +1,4 @@
-import icons from 'react-icons'
+import Image from "next/image";
 
 const searchingBar=()=>{
     return(
@@ -61,7 +61,7 @@ const searchingBar=()=>{
           <div className="flex row space-x-10">
            
             <div className="">
-                <img src="https://th.bing.com/th/id/OIF.alB7X63AUscjqk2QJEX5tA?w=258&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="granadiller" width="7px" height="8px"/>
+                <Image src="https://th.bing.com/th/id/OIF.alB7X63AUscjqk2QJEX5tA?w=258&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="granadiller" width={7} height={8}/>
              </div>
              <div className="flex-container box-border h-80 w-80 p-4 - bg-slate-300 border-4 ..">
             </div>
@@ -77,7 +77,7 @@ const searchingBar=()=>{
             <div className="">
            </div>
             <div className="flex-container box-border h-80 w-80 p-4  bg-slate-300 border-4 ..">
-            <img src="https://th.bing.com/th/id/OIF.alB7X63AUscjqk2QJEX5tA?w=258&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="granadiller" width="7px" height="8px"/>
+            <Image src="https://th.bing.com/th/id/OIF.alB7X63AUscjqk2QJEX5tA?w=258&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="granadiller" width={7} height={8}/>
              </div>
              <div className="flex-container box-border h-80 w-80 p-4  bg-slate-300 border-4 ..">
              </div>

@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, FormEvent } from 'react';
 
-const CreateShopModal = ({ isOpen, onClose, onCreateShop }) => {
-  const [shopName, setShopName] = useState('');
-  const [shopDescription, setShopDescription] = useState('');
+interface CreateShopModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onCreateShop: (shopData: { name: string; description: string }) => void;
+}
 
-  const handleSubmit = (e) => {
+const CreateShopModal: React.FC<CreateShopModalProps> = ({
+  isOpen,
+  onClose,
+  onCreateShop
+}) => {
+  const [name, setShopName] = useState<string>('');
+  const [description, setShopDescription] = useState<string>('');
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Validate inputs
-    if (!shopName.trim() || !shopDescription.trim()) {
+    if (!name.trim() || !description.trim()) {
       alert('Please fill in all fields');
       return;
     }
 
     // Call the create shop function passed as prop
-    onCreateShop({ 
-      shopName, 
-      shopDescription 
+    onCreateShop({
+      name,
+      description
     });
 
     // Reset form and close modal
@@ -33,39 +43,39 @@ const CreateShopModal = ({ isOpen, onClose, onCreateShop }) => {
             <label className="label">
               <span className="label-text text-black">Shop Name</span>
             </label>
-            <input 
-              type="text" 
-              placeholder="Enter shop name" 
-              className="input input-bordered w-full bg-white text-black border-none ring-1 focus:outline-CustomGreen-500 rounded-full" 
-              value={shopName}
+            <input
+              type="text"
+              placeholder="Enter shop name"
+              className="input input-bordered w-full bg-white text-black border-none ring-1 focus:outline-CustomGreen-500 rounded-full"
+              value={name}
               onChange={(e) => setShopName(e.target.value)}
-              required 
+              required
             />
           </div>
-          
+
           <div className="form-control w-full mt-4">
             <label className="label">
               <span className="label-text text-black">Shop Description</span>
             </label>
             <input
-              className="input input-bordered w-full bg-white text-black border-none ring-1 focus:outline-CustomGreen-500 rounded-full" 
+              className="input input-bordered w-full bg-white text-black border-none ring-1 focus:outline-CustomGreen-500 rounded-full"
               placeholder="Describe your shop"
-              value={shopDescription}
+              value={description}
               onChange={(e) => setShopDescription(e.target.value)}
               required
-            ></input>
+            />
           </div>
-          
+
           <div className="modal-action">
-            <button 
-              type="button" 
-              className="btn btn-ghost hover:bg-red-500 bg-red-600 text-white" 
+            <button
+              type="button"
+              className="btn btn-ghost hover:bg-red-500 bg-red-600 text-white"
               onClick={onClose}
             >
               Cancel
             </button>
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="btn border-none hover:bg-green-500 bg-green-700 text-white"
             >
               Create Shop

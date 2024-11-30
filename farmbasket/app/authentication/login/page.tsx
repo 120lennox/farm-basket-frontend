@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import ForgotPassword from "../forgotPassword/page";
+import ForgotPassword from "../forgotPassword/forogotPassword";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -13,10 +13,13 @@ export default function Login() {
   const [visible, setVisible] = useState(false); // For ForgotPassword modal
   const router = useRouter();
 
-  const validateEmail = (email) =>
+  interface ErrorMessageProps { 
+    message?: string; 
+  }  
+  const validateEmail = (email: string) =>
     /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setEmailError("");
     setPasswordError("");
@@ -38,7 +41,8 @@ export default function Login() {
         body: JSON.stringify({ email, password }),
       });
       const data = await res.json();
-      console.log(data.message)
+
+      console.log(data.access_token)
   
       if (!res.ok) {
         if (data.message.includes("email")) {
@@ -51,7 +55,7 @@ export default function Login() {
         return;
       }
 
-      if (data.token) localStorage.setItem("authToken", data.token);
+      if (data.access_token) localStorage.setItem("authToken", data.access_token);
       router.push("/");
       setEmail("");
       setPassword("");
@@ -61,8 +65,8 @@ export default function Login() {
     }
   };
 
-  const ErrorMessage = ({ message }) =>
-    message && <p className="text-red-500 text-xs mt-1">{message}</p>;
+  const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) =>
+  message ? <p className="text-red-500 text-xs mt-1">{message}</p> : null ;
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
@@ -74,7 +78,7 @@ export default function Login() {
             convenient, high-quality trading.
           </p>
           <div className="mt-4">
-            <p className="text-xs">Don't have an account?</p>
+            <p className="text-xs">Dont have an account?</p>
             <Link
               href="/authentication/signUp"
               className="bg-white text-green-900 px-4 py-2 rounded-full inline-block mt-2 hover:bg-gray-100"

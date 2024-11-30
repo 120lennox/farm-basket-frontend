@@ -1,6 +1,7 @@
 "use client";
 import { fetchShopProducts } from "@/app/lib/data";
 import React, { useState, createContext, useContext, useEffect } from "react";
+import axios from "axios";
 
 // Interfaces
 interface Product {
@@ -65,7 +66,10 @@ const useInventory = () => {
 };
 
 // Inventory Page Component
-const InventoryPage = () => {
+const InventoryPage = async () => {
+  const shopid = localStorage.getItem("shopId")
+  // const shopProduct = await fetchShopProducts(shopid)
+
   const { inventory, updateProduct, deleteProduct, addProduct } = useInventory();
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isAddingProduct, setIsAddingProduct] = useState(false);
@@ -73,19 +77,24 @@ const InventoryPage = () => {
 
   // Fetch products on mount
   useEffect(() => {
-    const fetchData = async (shopId: number) => {
+    const shopid = localStorage.getItem('shopId')
+    const shopIdNumber = shopid ? parseInt(shopid,10) : null;
+    const fetchData = async () => {
       try {
-        console.log("Fetching products...");
-        const result = await fetchShopProducts(shopId);
-        
-        result.forEach((product: Product) => addProduct(product))
-
+        const result = await fetchShopProducts(shopIdNumber); // Replace with your API call
+        result.forEach((product: Product) => addProduct(product));
       } catch (err) {
         setError(`Error fetching shop products: ${err}`);
       }
+
+      // useEffect(()=>{
+      //   try {
+      //     const 
+      //   }
+      // })
     };
 
-    fetchData(0); // Replace with the actual shop ID
+    fetchData(); // Replace with the actual shop ID
   }, []);
 
   const handleSaveProduct = (product: Product) => {
@@ -204,16 +213,27 @@ const ProductModal = ({
           quantity: formData.quantity,
         }),
       });
+      
       const data = await response.json();
+      console.log(data)
       if (!response.ok) {
         setError(`Error saving product: ${data.message}`);
       } else {
         onSave(data);
         onClose();
+        const imageResponse = await fetch("https://farm-basket3.onrender.com/images/product/image", {
+          method : "POST",
+          headers: { "Content-Type" : "aplication/json" },
+          body: JSON.stringify({
+            image : formData.image,
+            productid: data.productid
+          })
+        })
       }
     } catch (err) {
       setError(`Unable to save product: ${err}`);
     }
+
   };
 
   return (
@@ -292,4 +312,4 @@ export default function Inventory() {
     </InventoryProvider>
   );
 }
-``
+

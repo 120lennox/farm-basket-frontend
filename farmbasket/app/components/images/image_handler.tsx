@@ -1,7 +1,7 @@
 import Image from "next/image"
 
 export default function ImageHandler(
-    {image, name}:{image:string, name:string}
+    {image}:{image:string, name:string}
 ){
     return <div>
         <div>
